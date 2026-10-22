@@ -1,102 +1,82 @@
-# Studio
+# Estúdio de vídeo
 
-**Edite seus vídeos conversando com o Claude.** Você grava e corta; o Claude assiste, entende o que você fala e monta a edição: textos animados, prints com zoom e marca-texto, tela dividida, gráficos, legendas e, se quiser, B-rolls gerados por IA.
+**Faça vídeos conversando com o Claude Code ou o Codex.** Você entrega o material (vídeos brutos, fotos, referências de estilo e de contexto); o diretor faz as perguntas certas, propõe a direção visual, escreve o roteiro de narração, monta a edição no [Remotion](https://www.remotion.dev) e entrega o vídeo pronto para publicar, com capa e legenda do post.
 
-| | | |
-|---|---|---|
-| ![](estilos/imagens/MinimalSuico.jpg) | ![](estilos/imagens/papel-creme-aula.jpg) | ![](estilos/imagens/tecnico-neon.jpg) |
+Fork de [mackswendhell/studio](https://github.com/mackswendhell/studio) (MIT), adaptado para:
 
-O arquivo [CLAUDE.md](CLAUDE.md) transforma o Claude num **diretor de vídeo**: ao abrir o projeto, ele pergunta em qual nível você quer editar, confere o que falta instalar, sugere estilos e conduz cada etapa, parando para você aprovar.
-
-## Dois níveis
-
-| | **Nível 1: gratuito** | **Nível 2: avançado** |
-|---|---|---|
-| Motor | [Remotion](https://www.remotion.dev) (vídeo feito com código) | [Higgsfield](https://higgsfield.ai) (IA generativa + editor Higgsedit) |
-| O que faz | textos, prints animados, marca-texto, tela dividida, gráficos, legendas, transições | tudo do Nível 1 + imagens e vídeos gerados por IA: B-roll, metáforas, cenas realistas |
-| Custo | zero, roda no seu computador | créditos da sua conta Higgsfield |
-| Melhor para | tutoriais, aulas, análises, notícias, Reels | vídeos que pedem imagem de cinema e ilustração |
-| Guia | [guias/2-nivel-1-remotion.md](guias/2-nivel-1-remotion.md) | [guias/4-nivel-2-higgsfield.md](guias/4-nivel-2-higgsfield.md) |
-
-Nos dois níveis o fluxo é o mesmo:
+- **qualquer tipo de vídeo:** montagem de brutos sem ninguém falando (imóveis, obras, eventos, produtos), pessoa falando, fotos animadas, motion graphics, tutorial de tela;
+- **qualquer estilo:** em cada projeto, o estilo sai da sua identidade visual e das suas referências, não de uma galeria fixa;
+- **briefing guiado:** rodadas curtas de perguntas de múltipla escolha, conforme a finalidade (Instagram → legenda do post; narração gerada → roteiro para o Google AI Studio);
+- **Claude Code e Codex:** as regras do diretor ficam em `AGENTS.md` (o `CLAUDE.md` só o importa);
+- **entrega profissional:** loudness de -14 LUFS, codificação compatível com as redes, zonas seguras de cada plataforma, revisões REVnn nunca sobrescritas;
+- **somente ferramentas gratuitas e locais:** sem serviços de IA pagos; nada sai da máquina sem você pedir.
 
 ```text
-você grava e corta → salva o vídeo e os prints em projetos/
-   → o Claude assiste e transcreve (com o tempo de cada palavra)
-   → propõe um plano de edição → você aprova
-   → ele produz, mostra quadros de revisão → você aprova
-   → o vídeo final sai em edicoes/
+você cria o projeto e solta o material nas pastas
+   → o diretor pergunta (finalidade, formato, narração, identidade...)
+   → estuda os brutos e o contexto → propõe a direção de estilo → você aprova
+   → (se houver) roteiro de narração → você gera a voz e devolve o áudio
+   → plano de edição → você aprova
+   → programa, mostra quadros de revisão → você aprova
+   → vídeo, capa e legenda em 6_entregas/REV00/
 ```
 
 ## Instalar
 
-O jeito mais fácil: abra uma sessão **Code** no Claude e cole:
+Pré-requisitos: Node.js, Python 3.10+, FFmpeg (e, recomendados, yt-dlp, Deno, Poppler e Git). Passo a passo em **[guias/1-primeiros-passos.md](guias/1-primeiros-passos.md)**.
 
-```text
-Instala o repositório https://github.com/mackswendhell/studio na pasta C:\dev (siga a seção "Instalação" do README).
+```bash
+git clone <url-deste-repositório> C:\Estudio-video
+cd C:\Estudio-video
+npm run instalar
 ```
 
-O Claude clona o repositório e instala tudo, incluindo as skills gratuitas **remotion-best-practices** e **watch**. No fim, abra uma sessão nova dentro da pasta `studio`.
-
-Pré-requisitos no computador: Node.js, Python 3.10+ e FFmpeg. Se faltar algum, o passo a passo para Windows e Mac está em **[guias/1-primeiros-passos.md](guias/1-primeiros-passos.md)**.
+Clone **fora** do OneDrive, iCloud ou Dropbox. Os seus vídeos podem ficar numa pasta sincronizada: aponte `dados` no `estudio.local.json` para ela.
 
 ### Instalação (instruções para o agente)
 
-Se você é um agente de IA instalando este repositório, faça exatamente isto:
-
-1. Clone: `git clone https://github.com/mackswendhell/studio.git` na pasta indicada (padrão: `C:\dev` no Windows, `~/dev` no Mac/Linux; evite pastas do OneDrive/iCloud).
-2. Entre na pasta e rode **`npm run instalar`**. Ele instala, nesta ordem:
-   - dependências do Remotion (`npm install`);
-   - transcrição local (`pip install faster-whisper`);
-   - skill **remotion-best-practices** no projeto (`npx -y skills add remotion-dev/skills -s remotion-best-practices -a claude-code -y`);
-   - skill **watch** (`claude plugin marketplace add bradautomates/claude-video` e `claude plugin install watch@claude-video`).
-3. Se o comando `claude` não existir (usuário só com o Claude Desktop), a watch é oferecida automaticamente ao abrir a pasta, porque está declarada em `.claude/settings.json`. Oriente a pessoa a aceitar, ou a instalar em **Personalizar → Plugins → Adicionar marketplace** com `https://github.com/bradautomates/claude-video`.
-4. Se `node`, `python` ou `ffmpeg` faltarem, instale-os com o gerenciador do sistema (`winget` no Windows, `brew` no Mac; comandos em [guias/1-primeiros-passos.md](guias/1-primeiros-passos.md)) e rode `npm run instalar` de novo.
-5. Termine dizendo à pessoa para **abrir uma sessão nova do Claude dentro da pasta `studio`**. Skills instaladas só aparecem numa sessão nova, e é lá que o diretor de vídeo ([CLAUDE.md](CLAUDE.md)) assume.
-
-Já clonou manualmente? Basta rodar `npm run instalar` dentro da pasta.
+1. Clone na pasta indicada (padrão: `C:\Estudio-video`; nunca dentro de pasta sincronizada).
+2. Rode `npm run instalar`. Ele instala as dependências do Remotion, cria um ambiente Python só para a transcrição (fora do repositório), instala o `faster-whisper` (e as bibliotecas CUDA, se houver NVIDIA), as skills do Remotion para Claude Code e Codex, e a skill `watch` no Claude Code. Também cria o `estudio.local.json`.
+3. Se faltarem `node`, `python`, `ffmpeg` ou `yt-dlp`, instale-os pelo gerenciador do sistema (comandos no guia 1) e rode `npm run instalar` de novo.
+4. No Codex, a `watch` entra como skill: copie `skills/watch` do repositório [bradautomates/claude-video](https://github.com/bradautomates/claude-video) para `~/.agents/skills/watch`.
+5. Termine dizendo à pessoa para abrir uma **sessão nova** (skills novas só aparecem nela).
 
 ## Começo rápido
 
-Depois de instalar:
+```text
+Quero fazer um vídeo novo.
+```
 
-1. Coloque seu vídeo em `projetos/001. meu-video/video/` e os prints em `projetos/001. meu-video/prints/`.
-2. Abra a pasta `studio` no Claude (sessão **Code**).
-3. Responda se quer o Nível 1 ou o Nível 2 e diga o que imagina. O diretor cuida do resto.
-
-> **Dica que mais faz diferença:** tire print de tudo o que você cita no vídeo (sites, notícias, telas, gráficos) e salve em `prints/`. Animação feita sobre print real fica muito melhor que recriação.
+O diretor cria `dados/projetos/001 - <nome>/` com as pastas `1_brutos`, `2_referencias_estilo`, `3_referencias_contexto`, `4_audio`, `5_trabalho` e `6_entregas`, e começa o briefing.
 
 ## Estrutura
 
 ```text
-studio/
-├─ CLAUDE.md      o diretor de vídeo
-├─ guias/         os manuais, do zero ao avançado
-├─ estilos/       galeria de estilos de referência (horizontais e verticais)
-├─ projetos/      ← você coloca o vídeo e os prints aqui
-├─ edicoes/       ← o vídeo pronto sai aqui
-├─ src/           código do Remotion (exemplos de estilo + seus vídeos)
-└─ tools/         transcrição local e gerador da Higgsfield Cloud API
+estudio-video/
+├─ AGENTS.md  CLAUDE.md   o diretor de vídeo
+├─ guias/                 primeiros passos · fluxo · manual do Remotion · tipos de vídeo · direção editorial · identidade visual · som e entrega
+├─ modelos/               perguntas e briefing · plano · narração · legenda do Instagram · checklist · kit de marca
+├─ estilos/               galeria do projeto original (inspiração)
+├─ scripts/               estudio.mjs (comando único) · novo-projeto.mjs · instalar.mjs
+├─ tools/                 transcrever.py · sondar.py · finalizar.py
+├─ src/                   Remotion: _shared/ (peças) · estilos/ · videos/ (seus vídeos, fora do Git)
+└─ dados/                 seus projetos e marcas (fora do Git; pode apontar para outra pasta)
 ```
-
-A explicação pasta por pasta está nos [primeiros passos](guias/1-primeiros-passos.md#7-entendendo-as-pastas).
 
 ## Guias
 
-1. [Primeiros passos](guias/1-primeiros-passos.md): instalação, pastas e primeira edição.
-2. [Nível 1: Remotion](guias/2-nivel-1-remotion.md): o processo gratuito, fase por fase.
-3. [Manual do Remotion para leigos](guias/3-manual-remotion.md): o que é, como funciona e tudo o que dá para pedir.
-4. [Nível 2: Higgsfield](guias/4-nivel-2-higgsfield.md): como conectar (conta ou API key), processo, modelos, custos e prompts.
-5. [Direção editorial](guias/5-direcao-editorial.md): o repertório de cenas, transições e cuidados que guia toda edição.
-
-E a [galeria de estilos](estilos/README.md) para escolher o visual.
+1. [Primeiros passos](guias/1-primeiros-passos.md)
+2. [Fluxo de trabalho](guias/2-fluxo-de-trabalho.md)
+3. [Manual do Remotion para leigos](guias/3-manual-remotion.md)
+4. [Tipos de vídeo](guias/4-tipos-de-video.md)
+5. [Direção editorial](guias/5-direcao-editorial.md) (pessoa falando, do projeto original)
+6. [Identidade visual](guias/6-identidade-visual.md)
+7. [Som, narração e entrega](guias/7-som-e-entrega.md)
 
 ## Créditos e licenças
 
-- Código e guias deste repositório: [MIT](LICENSE).
-- As imagens em `estilos/imagens/` que vêm de vídeos do canal **Macks Wendhell | Inteligência Aplicada** são referência visual; não as reutilize como material próprio.
+- Projeto original: [mackswendhell/studio](https://github.com/mackswendhell/studio), de Macks Wendhell, [MIT](LICENSE). Este fork mantém a licença e o aviso de copyright.
+- As imagens em `estilos/imagens/` vêm de vídeos do canal **Macks Wendhell | Inteligência Aplicada** e são referência visual; não as reutilize como material próprio.
 - [Remotion](https://www.remotion.dev): gratuito para pessoas físicas, organizações sem fins lucrativos e empresas com até 3 pessoas; empresas maiores precisam de [licença](https://www.remotion.dev/license).
-- Skill [watch](https://github.com/bradautomates/claude-video), de bradautomates (MIT).
-- Skills do Remotion: [remotion-dev/skills](https://github.com/remotion-dev/skills).
-- Transcrição: [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
-- Higgsfield: serviço de terceiros, sujeito aos termos e preços da [Higgsfield](https://higgsfield.ai).
+- Skill [watch](https://github.com/bradautomates/claude-video), de bradautomates (MIT). Skills do Remotion: [remotion-dev/skills](https://github.com/remotion-dev/skills).
+- Transcrição: [faster-whisper](https://github.com/SYSTRAN/faster-whisper). Mídia: [FFmpeg](https://ffmpeg.org).

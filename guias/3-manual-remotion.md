@@ -1,6 +1,6 @@
 # Manual do Remotion para quem nunca editou vídeo
 
-Este manual explica o Remotion sem exigir que você saiba programar. A ideia é você entender **o que é possível pedir** e **o que o Claude está fazendo** quando edita o seu vídeo no Nível 1.
+Este manual explica o Remotion sem exigir que você saiba programar. A ideia é você entender **o que é possível pedir** e **o que o diretor está fazendo** quando edita o seu vídeo.
 
 ---
 
@@ -28,21 +28,23 @@ No Remotion, em vez de desenhar 300 folhas à mão, o Claude escreve uma **regra
 | **Interpolação** | ir de um valor a outro ao longo do tempo (opacidade 0 → 1, posição 100 → 0) | um dimmer de luz girando devagar |
 | **Easing (curva)** | o "jeito" do movimento: começar devagar, acelerar, frear | um carro saindo do sinal e parando no próximo |
 | **Spring (mola)** | movimento com leve elasticidade, como algo que se acomoda | uma gaveta que fecha macia |
-| **Pasta pública** | onde ficam seus vídeos e prints (`projetos/`) | o almoxarifado do estúdio |
+| **Pasta pública** | a pasta do projeto de vídeo (`1_brutos/`, `2_referencias_estilo/`...) | o almoxarifado do estúdio |
 | **Render** | transformar tudo num arquivo de vídeo final | revelar o filme |
 | **Still** | exportar um único quadro como imagem | tirar uma foto de um momento |
 
 ## 3. O Remotion Studio (a tela de pré-visualização)
 
-Rode no terminal, dentro da pasta do projeto:
+Rode no terminal, dentro da pasta do estúdio (troque 001 pelo número do projeto):
 
 ```bash
-npm run studio
+npm run estudio -- 001 studio
 ```
+
+Sem número (`npm run studio`), abre só a galeria de estilos.
 
 Abre uma página no navegador com:
 
-- **à esquerda**, a lista de composições. Em `Estilos` estão os exemplos que vêm com este repositório; os seus vídeos aparecem abaixo;
+- **à esquerda**, a lista de composições. Em `Galeria` estão os exemplos do projeto original; os seus vídeos aparecem abaixo;
 - **no centro**, o player. Dê play, pause e arraste para qualquer ponto;
 - **embaixo**, a timeline com as `Sequence`s, que mostra quando cada cena entra e sai;
 - **à direita**, as propriedades e o botão **Render**.
@@ -51,7 +53,7 @@ Você pode deixar o Studio aberto enquanto conversa com o Claude: quando ele alt
 
 ## 4. O que dá para pedir
 
-Tudo abaixo é possível no Nível 1, sem nenhum custo. Peça com as suas palavras.
+Tudo abaixo é possível sem nenhum custo, em qualquer estilo. Peça com as suas palavras.
 
 ### Texto e tipografia
 - Títulos que entram palavra por palavra, letra por letra, com desfoque ou subindo.
@@ -102,12 +104,12 @@ Tudo abaixo é possível no Nível 1, sem nenhum custo. Peça com as suas palavr
 
 | Arquivo | Para que serve |
 |---|---|
-| `src/Root.tsx` | a "lista de vídeos": cada composição registrada aqui aparece no Studio |
+| `src/Root.tsx` | a "lista de vídeos"; os seus entram sozinhos pelo `src/videos/registro.tsx` |
 | `src/videos/<nome>/` | o código de cada um dos seus vídeos |
-| `src/estilos/` | os exemplos da galeria, prontos para estudar e copiar |
+| `src/estilos/` | os exemplos da galeria, para estudar e se inspirar |
 | `src/_shared/` | peças técnicas reaproveitadas (como a tela dividida sincronizada) |
-| `projetos/` | seus vídeos e prints (a pasta pública do Remotion) |
-| `edicoes/` | os arquivos finais renderizados |
+| `<dados>/projetos/` | seus vídeos e referências (cada projeto é a pasta pública do seu vídeo) |
+| `6_entregas/` | os arquivos finais, por revisão |
 | `remotion.config.ts` | configurações gerais do render |
 
 Você não precisa abrir nenhum deles. Mas, se quiser espiar, o código dos exemplos em `src/estilos/` tem comentários em português explicando cada estilo.
@@ -115,18 +117,20 @@ Você não precisa abrir nenhum deles. Mas, se quiser espiar, o código dos exem
 ## 6. Comandos úteis
 
 ```bash
-npm run studio         # abre a pré-visualização no navegador
-npm run typecheck      # confere se o código está sem erros
-npm run compositions   # lista as composições registradas
+npm run estudio -- ajuda                     # todos os comandos
+npm run estudio -- 001 studio                # pré-visualização do projeto 001 no navegador
+npm run typecheck                            # confere se o código está sem erros
+npm run estudio -- 001 compositions          # lista as composições registradas
 
-# um quadro parado (still) de uma composição
-npx remotion still src/index.ts VerticalLegendas edicoes/teste.png --frame=75
+# um quadro parado (still), salvo em 5_trabalho/stills/
+npm run estudio -- 001 still ReelsUnidade 75
 
-# render de um vídeo
-npx remotion render src/index.ts VerticalLegendas edicoes/teste.mp4
+# rascunho rápido e render final (este já finaliza o áudio e grava em 6_entregas/REV00/)
+npm run estudio -- 001 rascunho ReelsUnidade
+npm run estudio -- 001 render ReelsUnidade REV00 Reels_Unidade
 ```
 
-Na prática, é o Claude quem roda esses comandos. Eles estão aqui para você saber o que está acontecendo.
+Na prática, é o diretor quem roda esses comandos. Eles estão aqui para você saber o que está acontecendo.
 
 ## 7. MP4 ou MOV?
 

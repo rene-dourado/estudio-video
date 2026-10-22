@@ -6,21 +6,17 @@ import {TerminalTecnico} from './estilos/TerminalTecnico';
 import {VerticalDados} from './estilos/VerticalDados';
 import {VerticalLegendas} from './estilos/VerticalLegendas';
 import {VerticalPrint} from './estilos/VerticalPrint';
-import {DURACAO as MODS_DURACAO, FPS as MODS_FPS} from './videos/mods/base';
-import {Mods} from './videos/mods/Mods';
-import {DURACAO as OPENCLAW_DURACAO, FPS as OPENCLAW_FPS} from './videos/openclaw/base';
-import {OpenClaw} from './videos/openclaw/OpenClaw';
-import {CapaOpenClaw} from './videos/openclaw/Capa';
-import {DURACAO as HARNESS_DURACAO, FPS as HARNESS_FPS} from './videos/harness/base';
-import {Harness} from './videos/harness/Harness';
+// Gerado pelo scripts/estudio.mjs a partir de src/videos/*/index.tsx. Não edite à mão.
+import {Videos} from './videos/registro';
 
 const FPS = 30;
 const SEIS_SEGUNDOS = 6 * FPS;
 
 export const RemotionRoot: React.FC = () => (
   <>
-    {/* Exemplos que rodam sem nenhum vídeo. Servem de referência de estilo, não de padrão fixo. */}
-    <Folder name="Estilos">
+    {/* Exemplos do projeto original, rodam sem nenhum vídeo. São inspiração, nunca o estilo obrigatório:
+        o estilo de cada vídeo sai do briefing e das referências do projeto. */}
+    <Folder name="Galeria">
       <Composition id="MinimalSuico" component={MinimalSuico} width={1920} height={1080} fps={FPS} durationInFrames={SEIS_SEGUNDOS} />
       <Composition id="TerminalTecnico" component={TerminalTecnico} width={1920} height={1080} fps={FPS} durationInFrames={SEIS_SEGUNDOS} />
       <Composition id="PapelRecortadoLeve" component={PapelRecortadoLeve} width={1920} height={1080} fps={FPS} durationInFrames={SEIS_SEGUNDOS} />
@@ -29,17 +25,7 @@ export const RemotionRoot: React.FC = () => (
       <Composition id="VerticalDados" component={VerticalDados} width={1080} height={1920} fps={FPS} durationInFrames={SEIS_SEGUNDOS} />
     </Folder>
 
-    {/* Seus vídeos entram aqui: um <Folder name="001-slug"> por projeto, com o código em src/videos/<slug>/. */}
-    <Folder name="001-mods">
-      <Composition id="Mods" component={Mods} width={1920} height={1080} fps={MODS_FPS} durationInFrames={Math.round(MODS_DURACAO * MODS_FPS)} />
-    </Folder>
-    <Folder name="002-abertura-openclaw">
-      <Composition id="OpenClaw" component={OpenClaw} width={1920} height={1080} fps={OPENCLAW_FPS} durationInFrames={Math.round(OPENCLAW_DURACAO * OPENCLAW_FPS)} />
-      <Composition id="CapaOpenClaw" component={CapaOpenClaw} width={1280} height={720} fps={30} durationInFrames={1} />
-      <Composition id="CapaOpenClawIA" component={CapaOpenClaw} defaultProps={{ia: "CAPA1.png"}} width={1280} height={720} fps={30} durationInFrames={1} />
-    </Folder>
-    <Folder name="003-harness">
-      <Composition id="Harness" component={Harness} width={1920} height={1080} fps={HARNESS_FPS} durationInFrames={Math.round(HARNESS_DURACAO * HARNESS_FPS)} />
-    </Folder>
+    {/* Um <Folder name="NNN-slug"> por vídeo, cada um em src/videos/<NNN-slug>/index.tsx. */}
+    <Videos />
   </>
 );

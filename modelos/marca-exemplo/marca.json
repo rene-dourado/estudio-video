@@ -1,0 +1,31 @@
+{
+  "nome": "Marca Exemplo",
+  "tom_de_voz": "próximo, claro e confiante; frases curtas; sem exagero de vendedor",
+  "cores": {
+    "fundo": "#14181C",
+    "texto": "#FFFFFF",
+    "destaque": "#E0B04A",
+    "apoio": "#6B7680"
+  },
+  "fontes": {
+    "titulo": {"familia": "Cormorant Garamond", "arquivo": "fontes/CormorantGaramond-500.ttf", "peso": 500},
+    "texto": {"familia": "Inter", "arquivo": "fontes/Inter-500.ttf", "peso": 500},
+    "legenda": {"familia": "Inter", "arquivo": "fontes/Inter-700.ttf", "peso": 700}
+  },
+  "logos": {
+    "principal": "logos/logo.png",
+    "simbolo": "logos/simbolo.png",
+    "sobre_escuro": "logos/logo-branco.png"
+  },
+  "contatos": {
+    "whatsapp": "(00) 00000-0000",
+    "instagram": "@marcaexemplo",
+    "site": "marcaexemplo.com.br"
+  },
+  "assinatura": ["@marcaexemplo", "(00) 00000-0000"],
+  "avisos": ["Imagens ilustrativas."],
+  "preferencias": {
+    "usar": ["zooms lentos", "filete na cor de destaque", "fotos claras e quentes"],
+    "evitar": ["transições chamativas", "emojis no vídeo", "textos em caixa alta longos"]
+  }
+}

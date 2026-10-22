@@ -1,6 +1,6 @@
 # Primeiros passos
 
-Este tutorial leva você do zero até a primeira edição. Leva uns 20 minutos, a maior parte esperando instalações.
+Do zero até o primeiro vídeo. Leva uns 20 minutos, a maior parte esperando instalações.
 
 ---
 
@@ -8,177 +8,109 @@ Este tutorial leva você do zero até a primeira edição. Leva uns 20 minutos, 
 
 | Item | Para quê | Obrigatório? |
 |---|---|---|
-| **Claude** com acesso ao Claude Code (plano Pro ou Max) | é o seu diretor de vídeo | sim |
+| **Claude Code** (plano Pro ou Max) e/ou **Codex** | o seu diretor de vídeo | um dos dois |
 | **Node.js** (versão LTS) | roda o Remotion | sim |
 | **Python** 3.10 ou mais novo | transcrição e skill `watch` | sim |
-| **FFmpeg** | lê e converte vídeo | sim |
+| **FFmpeg** | lê, mede e converte vídeo | sim |
+| **yt-dlp** e **Deno** | a `watch` assistir a vídeos de links (YouTube etc.) | para links |
+| **Poppler** | ler PDFs de contexto (plantas, memoriais) | recomendado |
 | **Git** | baixar e atualizar este repositório | recomendado |
-| Conta **Higgsfield** com créditos | só para o Nível 2 | não |
+| Placa NVIDIA | transcrição muitas vezes mais rápida | não |
 
-Você pode usar o Claude de três jeitos. Todos funcionam com este repositório:
-
-- **Claude Desktop, aba Code** (mais simples, sem terminal);
-- **Claude Code no VS Code** (extensão);
-- **Claude Code no terminal** (comando `claude`).
-
-> A skill `watch` **não funciona no Cowork nem no chat comum** do Claude. Use sempre uma sessão **Code**.
+Funciona no Claude Desktop (aba Code), no Claude Code do terminal ou do VS Code, e no Codex (app ou terminal). A skill `watch` **não funciona no chat comum** do Claude: use sempre uma sessão Code.
 
 ## 2. Instalar os programas
 
 ### Windows
 
-Abra o **PowerShell** e rode, um por vez:
+No **PowerShell**, um por vez:
 
 ```powershell
 winget install --id OpenJS.NodeJS.LTS --exact
 winget install --id Python.Python.3.12 --exact
 winget install --id Gyan.FFmpeg --exact
 winget install --id yt-dlp.yt-dlp --exact
+winget install --id DenoLand.Deno --exact
+winget install --id oschwartz10612.Poppler --exact
 winget install --id Git.Git --exact
 ```
 
-Feche e abra o PowerShell de novo e confira:
-
-```powershell
-node --version
-python --version
-ffmpeg -version
-```
+Feche e abra o PowerShell e confira: `node --version`, `python --version`, `ffmpeg -version`.
 
 ### macOS
 
-Instale o [Homebrew](https://brew.sh) e rode:
+Com o [Homebrew](https://brew.sh): `brew install node python ffmpeg yt-dlp deno poppler git`.
+
+## 3. Baixar o estúdio e instalar tudo
+
+Escolha uma pasta **fora** do OneDrive, iCloud ou Dropbox (a sincronização trava o `node_modules` e o render). Por exemplo, `C:\Estudio-video` ou `C:\dev\estudio-video`.
 
 ```bash
-brew install node python ffmpeg yt-dlp git
-```
-
-## 3. Baixar o Studio e instalar tudo
-
-### Jeito fácil: peça ao Claude
-
-Abra uma sessão **Code** no Claude e cole:
-
-```text
-Instala o repositório https://github.com/mackswendhell/studio na pasta C:\dev (siga a seção "Instalação" do README).
-```
-
-Ele clona, instala as dependências e as duas skills gratuitas (**remotion-best-practices** e **watch**). Quando terminar, **abra uma sessão nova** do Claude dentro da pasta `studio`: skills novas só aparecem numa sessão nova.
-
-### Jeito manual
-
-Escolha uma pasta **fora** do OneDrive, iCloud ou Dropbox (a sincronização atrapalha o render). Por exemplo, `C:\dev` no Windows ou `~/dev` no Mac.
-
-```bash
-cd C:\dev
-git clone https://github.com/mackswendhell/studio.git
-cd studio
+git clone <url-deste-repositório> C:\Estudio-video
+cd C:\Estudio-video
 npm run instalar
 ```
 
-O `npm run instalar` faz tudo de uma vez: dependências do Remotion, transcrição local (`faster-whisper`), skill `remotion-best-practices` (dentro do projeto) e skill `watch`. No fim ele mostra um resumo do que deu certo e do que falhou.
+O `npm run instalar` faz, nesta ordem: dependências do Remotion; um ambiente Python só para a transcrição (`~/.cache/estudio-video/whisper-venv`, fora do repositório) com `faster-whisper` e, se houver placa NVIDIA, as bibliotecas CUDA; as skills do Remotion para o Claude Code **e** para o Codex; a skill `watch` no Claude Code. Ele também cria o `estudio.local.json`.
 
-Sem Git? Baixe o ZIP pelo botão verde **Code → Download ZIP** no GitHub, descompacte e rode `npm run instalar` dentro da pasta.
+## 4. Skills
 
-Teste o Remotion:
+- **`watch`** ([bradautomates/claude-video](https://github.com/bradautomates/claude-video), MIT): assiste a vídeos, extrai quadros e lê legendas. No primeiro uso, escolha o motor **local** (nada sai da máquina); a transcrição do estúdio já é feita pelo `tools/transcrever.py`, então a `watch` pode ficar sem transcrição própria.
+  - **Claude Code:** instalada pelo `npm run instalar`, ou em **Personalizar → Plugins → Adicionar marketplace** com `https://github.com/bradautomates/claude-video`.
+  - **Codex:** copie a pasta `skills/watch` do repositório da watch para `~/.agents/skills/watch` (ou peça ao Codex para instalá-la com o `$skill-installer`).
+- **Skills do Remotion** ([remotion-dev/skills](https://github.com/remotion-dev/skills)): `remotion-best-practices` e as específicas (marcação, legendas, render, studio). Atualize com `npx skills update -g`.
 
-```bash
-npm run studio
+Skills novas só aparecem numa **sessão nova**.
+
+## 5. Onde ficam os seus vídeos
+
+O `estudio.local.json` diz onde ficam os dados (projetos e marcas). Padrão: a pasta `dados/` dentro do repositório, que nunca vai para o Git. Para guardar os vídeos no OneDrive (backup) e o motor fora dele:
+
+```json
+{
+  "dados": "~/OneDrive/Documentos/Videos",
+  "python": "~/.cache/estudio-video/whisper-venv/Scripts/python.exe"
+}
 ```
 
-Abre uma página no navegador com os exemplos da galeria. Se você vê as composições em `Estilos` e consegue dar play, está tudo certo. Feche com `Ctrl+C` no terminal.
+O `~` é a sua pasta de usuário. Os vídeos são lidos de lá; o código e o `node_modules` continuam fora da sincronização.
 
-## 4. Sobre as skills gratuitas
-
-Skills são pacotes de conhecimento que o Claude carrega quando precisa. O `npm run instalar` já instala as duas:
-
-- **`watch`**: assiste vídeos, extrai quadros e transcreve ([bradautomates/claude-video](https://github.com/bradautomates/claude-video));
-- **`remotion-best-practices`**: boas práticas do Remotion ([remotion-dev/skills](https://github.com/remotion-dev/skills)).
-
-Usa só o Claude Desktop, sem o comando `claude` no terminal? A `watch` está declarada no projeto (`.claude/settings.json`), então o Claude oferece instalá-la ao abrir a pasta: aceite. Se não aparecer, instale à mão em **Personalizar → Plugins → Adicionar → Adicionar marketplace → Adicionar de um repositório**, cole `https://github.com/bradautomates/claude-video`, clique em **Sincronizar** e instale **Watch**.
-
-## 5. (Opcional) Chave gratuita da Groq
-
-A `watch` pode usar a Groq para transcrever rápido. É grátis dentro de um limite generoso.
-
-1. Crie a chave em [console.groq.com/keys](https://console.groq.com/keys).
-2. Salve como variável de ambiente:
-   - Windows: `[Environment]::SetEnvironmentVariable("GROQ_API_KEY", "sua-chave", "User")`
-   - Mac: adicione `export GROQ_API_KEY="sua-chave"` ao `~/.zshrc`.
-3. Reabra o Claude.
-
-Sem essa chave tudo funciona igual: o `tools/transcrever.py` transcreve localmente, de graça.
-
-## 6. (Só para o Nível 2) Conectar a Higgsfield
-
-Siga a seção [Conectar a Higgsfield ao Claude](4-nivel-2-higgsfield.md#1-conectar-a-higgsfield-ao-claude). Resumo: no Claude Desktop, **Configurações → Conectores → Adicionar conector personalizado**, URL `https://mcp.higgsfield.ai/mcp`, e login na sua conta.
-
----
-
-## 7. Entendendo as pastas
+## 6. Entendendo as pastas
 
 ```text
-studio/
-├─ CLAUDE.md           o "diretor": instruções que o Claude lê ao abrir o projeto
-├─ README.md           visão geral
-├─ guias/              os manuais (você está aqui)
-├─ estilos/            galeria de estilos de referência, com imagens
-│
-├─ projetos/           ← VOCÊ COLOCA AQUI o vídeo e os prints
-│  └─ 001. meu-video/
-│     ├─ video/        o vídeo gravado, já cortado (nunca é alterado)
-│     ├─ prints/       prints e imagens do que você quer ver animado
-│     ├─ frames/       (gerado) quadros que o Claude "assistiu"
-│     ├─ transcricao/  (gerado) texto com o tempo de cada palavra
-│     ├─ hf/           (Nível 2) imagens e vídeos gerados na Higgsfield
-│     ├─ plano.md      (gerado) o plano de edição que você aprova
-│     └─ edit.jsx      (Nível 2) roteiro de montagem no Higgsedit
-│
-├─ edicoes/            ← AQUI SAI o vídeo pronto
-│  └─ 001. meu-video/
-│
-├─ src/                código do Remotion (Nível 1)
-│  ├─ Root.tsx         lista de vídeos registrados
-│  ├─ videos/          uma subpasta por vídeo seu
-│  ├─ estilos/         código dos exemplos da galeria
-│  └─ _shared/         peças reaproveitadas
-├─ tools/              transcrição local e gerador da Higgsfield Cloud API
-└─ scripts/            verificações automáticas
+estudio-video/                 o motor (fora do OneDrive)
+├─ AGENTS.md / CLAUDE.md       o diretor
+├─ guias/  modelos/  estilos/  manuais, modelos de briefing/plano/narração/legenda, galeria
+├─ scripts/  tools/            comandos do estúdio e ferramentas (transcrição, inventário, finalização)
+└─ src/                        Remotion: _shared/ (peças), estilos/ (galeria), videos/ (seus vídeos, fora do Git)
+
+<dados>/                       os seus vídeos (pode ser no OneDrive)
+├─ marcas/<marca>/             kits de identidade
+└─ projetos/001 - nome/        1_brutos · 2_referencias_estilo · 3_referencias_contexto · 4_audio · 5_trabalho · 6_entregas
 ```
 
-Regra de bolso: **você só mexe em `projetos/`** (para entregar material) **e em `edicoes/`** (para pegar o resultado). O resto é trabalho do Claude.
+Regra de bolso: **você coloca material em 1 a 4 e pega o resultado em 6.** O resto é trabalho do diretor.
 
-A pasta `projetos/` inteira fica fora do Git (`.gitignore`), com exceção do exemplo. Assim, seus vídeos e prints não vão parar no GitHub por acidente se você publicar um fork.
+## 7. Seu primeiro vídeo
 
-## 8. Sua primeira edição
+1. Abra uma sessão do Claude Code ou do Codex **na pasta onde ficam as regras do seu projeto de vídeos** (ou na do estúdio).
+2. Diga: `Quero fazer um vídeo novo.`
+3. Coloque os brutos e as referências nas pastas que o diretor indicar.
+4. Responda às rodadas de perguntas.
+5. Aprove a direção de estilo, o roteiro de narração (se houver) e o plano.
+6. Confira os quadros de revisão.
+7. Pegue o vídeo, a capa e a legenda em `6_entregas/REV00/`.
 
-1. Crie a pasta `projetos/001. meu-video/video/` e coloque seu vídeo lá (MP4 ou MOV, já cortado).
-2. Crie `projetos/001. meu-video/prints/` e salve prints de tudo o que você cita no vídeo: sites, notícias, telas de ferramentas.
-3. Abra a pasta `studio` no Claude (Desktop → Code → escolher pasta; ou `claude` no terminal dentro dela).
-4. O Claude vai perguntar se você quer o **Nível 1** ou o **Nível 2**. Responda.
-5. Diga o que quer. Exemplo:
-   ```text
-   Edita o projeto 001. Quero o vídeo completo, estilo minimal suíço, sem exagero de zoom.
-   ```
-6. Aprove (ou ajuste) o plano de edição que ele apresentar.
-7. Confira os quadros de revisão que ele mostrar.
-8. Pegue o vídeo em `edicoes/001. meu-video/`.
-
-Não sabe o que pedir? Pergunte ao próprio Claude: "o que dá para fazer com esse vídeo?". Ele foi instruído a sugerir opções.
-
-## 9. Glossário rápido
+## 8. Glossário rápido
 
 | Termo | Significado |
 |---|---|
-| **Master** | o seu vídeo gravado e cortado, a base de tudo |
-| **Inserção** | qualquer elemento que entra por cima ou no lugar da câmera |
-| **Overlay** | inserção com fundo transparente, que fica por cima do vídeo |
-| **B-roll** | imagens de apoio em tela cheia enquanto você continua falando |
-| **Split / tela dividida** | conteúdo de um lado, câmera do outro |
-| **PiP** (picture-in-picture) | câmera pequena num canto |
-| **Push-in / punch-in** | zoom lento / zoom rápido na câmera |
-| **Gatilho** | a palavra falada que faz uma inserção aparecer |
+| **Bruto** | vídeo, foto ou áudio do jeito que foi gravado |
+| **Plano / cena** | um trecho contínuo do vídeo final |
+| **Gatilho** | a palavra falada que faz um corte ou texto aparecer |
+| **Zona segura** | área do quadro que a interface da rede social não cobre |
+| **LUFS** | medida de volume percebido; as redes usam -14 |
+| **Still** | um quadro parado exportado como imagem, para revisão |
 | **Render** | gerar o arquivo de vídeo final |
-| **Still** | um quadro parado exportado como imagem, usado para revisão |
-| **MCP** | o "cabo" que conecta o Claude a um serviço externo, como a Higgsfield |
-| **Skill** | um pacote de instruções que ensina o Claude a fazer uma tarefa |
+| **REVnn** | número da revisão da entrega (REV00, REV01...) |
+| **Skill** | um pacote de instruções que ensina o agente a fazer uma tarefa |

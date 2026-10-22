@@ -1,17 +1,23 @@
 {
-  "name": "studio",
-  "version": "1.0.0",
+  "name": "estudio-video",
+  "version": "2.0.0",
   "private": true,
-  "description": "Estúdio de edição de vídeo com Claude Code: Nível 1 (Remotion, gratuito) e Nível 2 (Higgsfield).",
+  "description": "Estúdio de edição de vídeo com Claude Code e Codex, com o Remotion: qualquer tipo e estilo de vídeo, a partir de um briefing. Fork de mackswendhell/studio, sem a Higgsfield.",
   "scripts": {
     "instalar": "node scripts/instalar.mjs",
-    "studio": "remotion studio src/index.ts",
-    "compositions": "remotion compositions src/index.ts",
-    "typecheck": "tsc --noEmit && node scripts/check-split-layouts.mjs"
+    "novo": "node scripts/novo-projeto.mjs",
+    "estudio": "node scripts/estudio.mjs",
+    "studio": "node scripts/estudio.mjs galeria studio",
+    "compositions": "node scripts/estudio.mjs galeria compositions",
+    "typecheck": "node scripts/estudio.mjs registrar && tsc --noEmit && node scripts/check-split-layouts.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.451",
+    "@remotion/fonts": "4.0.451",
+    "@remotion/google-fonts": "4.0.451",
     "@remotion/media": "4.0.451",
+    "@remotion/media-utils": "4.0.451",
+    "@remotion/transitions": "4.0.451",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "remotion": "4.0.451"

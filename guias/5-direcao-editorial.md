@@ -1,6 +1,6 @@
 # Direção editorial
 
-Este guia vale para os dois níveis. Ele é um **repertório**, não um regulamento: descreve o que dá para fazer e como escolher. Em cada vídeo, o plano de edição (`plano.md`) escolhe o que entra, a partir do conteúdo e das **suas orientações para aquele vídeo**. Quando você pedir outra coisa, o seu pedido manda.
+Este guia vem do projeto original e foi escrito para vídeos de **pessoa falando para a câmera** (as seções 2 a 6). As seções 1, 7, 8 e 9 valem para qualquer tipo; para montagem de brutos, fotos e motion graphics, veja também [4-tipos-de-video.md](4-tipos-de-video.md), e para o estilo, [6-identidade-visual.md](6-identidade-visual.md). Ele é um **repertório**, não um regulamento: descreve o que dá para fazer e como escolher. Em cada vídeo, o plano de edição (`plano.md`) escolhe o que entra, a partir do conteúdo e das **suas orientações para aquele vídeo**. Quando você pedir outra coisa, o seu pedido manda.
 
 Nenhum vídeo precisa usar tudo. Um pode ser quase só câmera com três inserções precisas; outro pode ser uma aula inteira em tela dividida. O que importa é cada escolha servir à fala.
 
@@ -74,7 +74,7 @@ Perguntas úteis:
 - Ênfase: punch-in até ~1,12 em 2–3 s.
 - Limite do pan: `|deslocamento| ≤ largura × (escala − 1) / 2`, senão aparece borda preta.
 
-**Mudança de layout** (entrar numa `aula`, card da `demo` trocando de canto): **0,9–1,2 s**, curva suave sem "quique" (`Easing.inOut(Easing.cubic)` no Remotion, `bezier(0.65, 0, 0.35, 1)` no Higgsedit). Câmera e painel se movem **juntos**, com a mesma curva e a mesma janela de tempo. Pode começar alguns quadros antes da palavra para estar pronto nela, mas o conteúdo nunca aparece antes de ser dito.
+**Mudança de layout** (entrar numa `aula`, card da `demo` trocando de canto): **0,9–1,2 s**, curva suave sem "quique" (`Easing.inOut(Easing.cubic)` no Remotion). Câmera e painel se movem **juntos**, com a mesma curva e a mesma janela de tempo. Pode começar alguns quadros antes da palavra para estar pronto nela, mas o conteúdo nunca aparece antes de ser dito.
 
 **Vozes de transição** (misture para não ficar previsível):
 

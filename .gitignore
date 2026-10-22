@@ -3,13 +3,18 @@ node_modules/
 *.log
 tmp/
 .env
-edicoes/*
-!edicoes/.gitkeep
-projetos/*
-!projetos/LEIA-ME.md
-!projetos/000. exemplo/
-projetos/000. exemplo/**/*.mp4
-projetos/000. exemplo/**/*.mov
+__pycache__/
+# Configuração local (pasta de dados, Python): cada pessoa tem a sua.
+estudio.local.json
+# Seus vídeos, marcas e entregas nunca vão para o GitHub.
+dados/*
+!dados/LEIA-ME.md
+# O código de cada vídeo fica só na sua máquina, com uma cópia em 5_trabalho/codigo/ a cada render.
+src/videos/*
+!src/videos/LEIA-ME.md
+!src/videos/_exemplo/
 .claude/skills/
 .claude/settings.local.json
 skills-lock.json
+# Pasta pública montada a cada comando (hard links para o material do projeto).
+.publico/

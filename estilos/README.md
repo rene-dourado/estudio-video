@@ -1,14 +1,12 @@
 # Galeria de estilos
 
-Referências para você escolher (ou misturar) antes de editar. **Nenhum estilo é obrigatório.** Diga ao Claude qual te agrada, peça variações ("o minimal suíço, mas com fundo escuro") ou traga as suas próprias referências: salve prints de vídeos, sites ou marcas que você admira em `prints/` e peça "segue o estilo destas imagens".
-
-Na conversa, basta citar o nome do estilo em negrito.
+Repertório do projeto original ([mackswendhell/studio](https://github.com/mackswendhell/studio)), mantido como **inspiração**. **Nenhum estilo daqui é obrigatório nem o padrão.** O estilo de cada vídeo sai da sua identidade visual e das referências que você coloca em `2_referencias_estilo/` do projeto ([guias/6-identidade-visual.md](../guias/6-identidade-visual.md)). Use esta página para mostrar ao diretor algo que te agrada ("quero algo com o respiro do minimal suíço, mas nas cores da marca").
 
 ---
 
 ## Exemplos que rodam no seu computador
 
-Estes seis vêm com código em [src/estilos/](../src/estilos/). Abra `npm run studio` para vê-los em movimento. A silhueta cinza marca onde entra a **sua câmera**.
+Estes seis vêm com código em [src/estilos/](../src/estilos/). Abra `npm run studio` para vê-los em movimento (pasta `Galeria`). A silhueta cinza marca onde entra a **sua câmera**.
 
 ### Horizontal (16:9)
 
@@ -28,9 +26,9 @@ Estes seis vêm com código em [src/estilos/](../src/estilos/). Abra `npm run st
 
 ---
 
-## Do projeto original: Nível 1 (Remotion)
+## Do projeto original: feitos só com Remotion
 
-Quadros reais de vídeos editados com este fluxo no canal **Macks Wendhell | Inteligência Aplicada**. São **um** jeito de fazer, não o padrão.
+Quadros reais de vídeos editados no canal **Macks Wendhell | Inteligência Aplicada**. São **um** jeito de fazer, não o padrão, e as imagens não devem ser reutilizadas como material próprio.
 
 | | |
 |---|---|
@@ -41,29 +39,27 @@ Quadros reais de vídeos editados com este fluxo no canal **Macks Wendhell | Int
 | ![Manuscrito colorido](imagens/manuscrito-colorido.jpg) | ![Dossiê com marca-texto](imagens/dossie-marca-texto.jpg) |
 | **Manuscrito colorido.** Elementos sobre a câmera cheia, números em blocos coloridos e anotações à mão. | **Dossiê com marca-texto.** Documento de papel, lupa, marca-texto amarelo e um mascote desenhado. |
 
-## Do projeto original: Nível 2 (Higgsfield)
+## Do projeto original: com imagens geradas por IA
+
+Estes usaram B-rolls e ilustrações geradas por um serviço de IA pago, que **não faz parte deste fork**. A linguagem visual (papel, diorama, luz baixa) pode ser recriada com fotos próprias, ilustrações licenciadas ou desenho em código.
 
 | | |
 |---|---|
 | ![Papel recortado](imagens/papel-recortado-broll.jpg) | ![Papel creme em aula](imagens/papel-creme-aula.jpg) |
-| **Papel recortado.** B-roll gerado na Higgsfield como diorama de papel, sem texto; os chips entram na montagem. | **Papel creme em aula.** Painel creme à esquerda, câmera à direita (70/30), cards que se montam com a fala. |
+| **Papel recortado.** B-roll em diorama de papel, sem texto; os chips entram na montagem. | **Papel creme em aula.** Painel creme à esquerda, câmera à direita (70/30), cards que se montam com a fala. |
 | ![Cinematográfico escuro](imagens/cinematico-escuro.jpg) | |
 | **Cinematográfico escuro.** B-roll realista, luz baixa, tipografia discreta. | |
 | ![Papel recortado leve, aula](imagens/papel-recortado-leve.jpg) | ![Meia tela](imagens/meia-tela.jpg) |
-| **Papel recortado leve (projeto 003, harness).** Diagrama que se monta com a fala, cards com o Claude Code recriado, câmera colada em card quadrado. Ilustrações do cavalo geradas na Higgsfield no mesmo papel. | **Meia tela.** Faixa de papel à esquerda com texto 3D, câmera em altura total colada à direita, sem ampliar. Variação da tela dividida para frases-chave. |
+| **Papel recortado leve (projeto 003, harness).** Diagrama que se monta com a fala, cards com o Claude Code recriado, câmera colada em card quadrado. Ilustrações no mesmo papel. | **Meia tela.** Faixa de papel à esquerda com texto 3D, câmera em altura total colada à direita, sem ampliar. Variação da tela dividida para frases-chave. |
 
 ---
 
-## Como pedir um estilo
+## Como usar como referência
 
 ```text
-Usa o estilo "terminal técnico", intensidade equilibrada.
+Coloquei 3 prints de Reels que eu gosto em 2_referencias_estilo/. Segue esse ritmo, nas cores da marca.
 ```
 
 ```text
-Mistura o "papel creme em aula" com a legenda dinâmica, em vertical.
-```
-
-```text
-Coloquei 3 prints do canal X em prints/referencia-*. Segue esse visual.
+Quero a legenda palavra por palavra da "legenda dinâmica", mas com a fonte e o dourado do kit.
 ```

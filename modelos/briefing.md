@@ -1,0 +1,60 @@
+# Briefing — {{numero}} - {{titulo}}
+
+> Preenchido pelo diretor a partir das suas respostas. Nada aqui é inventado: o que não foi respondido fica como **a confirmar**.
+> Pode editar à vontade. O plano de edição (`plano.md`) parte deste arquivo.
+
+## 1. Finalidade
+
+- **Onde vai ser publicado:** <!-- Instagram Reels / feed / stories · YouTube · Shorts · TikTok · WhatsApp · site · apresentação · telão -->
+- **Objetivo:** <!-- vender · divulgar · informar · institucional · portfólio · tutorial · convite -->
+- **Público:** <!-- quem vai assistir, o que já sabe, o que precisa sentir ou fazer -->
+- **Mensagem principal (uma frase):**
+- **Chamada para ação (CTA):** <!-- chamar no WhatsApp · link na bio · agendar visita · seguir · nenhuma -->
+
+## 2. Formato
+
+- **Tipo de vídeo:** <!-- montagem de brutos · pessoa falando · fotos animadas · motion graphics · tela/tutorial · misto (ver guias/4-tipos-de-video.md) -->
+- **Proporção:** <!-- 9:16 (1080x1920) · 16:9 (1920x1080) · 4:5 (1080x1350) · 1:1 -->
+- **Duração-alvo:** <!-- ex.: 60–90 s -->
+- **Versões extras:** <!-- ex.: corte de 15 s para stories, versão horizontal, versão sem textos -->
+
+## 3. Som
+
+- **Narração:** <!-- gerar roteiro para o Google AI Studio (ou outra ferramenta) · já tenho o áudio · fala original do vídeo · sem narração -->
+- **Voz e tom da narração:** <!-- ex.: feminina, calorosa, ritmo calmo; voz sugerida no AI Studio -->
+- **Música:** <!-- sem música · eu forneço (com licença) · sugerir opções livres de direitos -->
+- **Som ambiente dos brutos:** <!-- manter baixo · cortar · usar em momentos específicos -->
+
+## 4. Identidade visual
+
+- **Marca:** <!-- kit em 2_referencias_estilo/marca/ · marca nova (criar kit) · sem marca -->
+- **Sensação desejada (3 palavras):** <!-- ex.: sofisticado, sereno, iluminado -->
+- **Referências de estilo:** <!-- arquivos em 2_referencias_estilo/ e o que agrada em cada um -->
+- **O que evitar:** <!-- ex.: transições chamativas, fontes arredondadas, cor X -->
+- **Intensidade de movimento:** <!-- sutil · equilibrada · intensa -->
+- **Textos na tela:** <!-- legenda da fala palavra a palavra · títulos por cena · rótulos discretos · nenhum -->
+
+## 5. Conteúdo e dados
+
+> Todo dado mostrado no vídeo, na legenda ou na narração precisa de fonte em `3_referencias_contexto/`.
+
+| Dado | Valor | Fonte (arquivo, página) | Pode aparecer? |
+|---|---|---|---|
+| | | | |
+
+- **Precisa aparecer:**
+- **Não pode aparecer:** <!-- ex.: preço, vaga, rosto de terceiros, logo de cliente sem autorização -->
+- **Avisos legais:** <!-- ex.: "Imagens ilustrativas", CRECI, registro de incorporação, créditos -->
+
+## 6. Entregáveis
+
+- [ ] Vídeo final (MP4 pronto para publicar)
+- [ ] Capa (JPG na proporção do post)
+- [ ] Legenda do post (se for Instagram ou outra rede)
+- [ ] Roteiro de narração (se for gerar a voz fora)
+- [ ] Outros:
+
+## 7. Prazo e pendências
+
+- **Prazo:**
+- **Pendências de material:** <!-- o diretor lista aqui o que falta, com o porquê -->
