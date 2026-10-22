@@ -2,6 +2,8 @@
 
 Do primeiro "quero um vídeo" até o arquivo pronto para publicar. O diretor (Claude Code ou Codex) conduz as fases na ordem e **para nos pontos de aprovação**. Você conversa, aprova e confere.
 
+**Tudo é guiado.** O diretor mostra o mapa das etapas e onde vocês estão. Cada mensagem dele termina com **Agora / Próximo / Preciso de você**, sempre com um exemplo de boa resposta. Quando falta material, ele diz o quê, por quê, em que pasta colocar e como obter. Antes de cada aprovação, ele explica o que você deve olhar. O *Andamento* no `briefing.md` mostra a qualquer momento o que já foi feito.
+
 **Custo:** zero. Tudo roda no seu computador: [Remotion](https://www.remotion.dev) (vídeo feito com código), skill `watch` (assiste aos vídeos), `faster-whisper` (tempo de cada palavra) e FFmpeg.
 
 ---
@@ -28,7 +30,7 @@ Não precisa organizar nada além disso. Nomes claros ajudam (`cozinha-dia.mp4`,
 
 ## 1. Briefing (perguntas)
 
-O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de múltipla escolha** ([modelos/perguntas.md](../modelos/perguntas.md)): onde vai ser publicado, tipo de vídeo, narração, duração, objetivo, público, chamada para ação, identidade, ritmo, música, avisos. As respostas vão para `briefing.md`.
+O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de múltipla escolha** ([modelos/perguntas.md](../modelos/perguntas.md)). As **obrigatórias**, feitas em todo vídeo, são: para quem é; onde vai ser publicado; objetivo e chamada para ação; duração; público; tipo de vídeo; narração; música; textos na tela; sites de referência; referências de estilo; dados e fontes; o que não pode aparecer e o que não é real; prazo. No fim, ele faz um resumo do que entendeu, lista as pendências e pergunta se pode seguir. As respostas vão para `briefing.md`.
 
 - **Instagram?** A legenda do post entra nos entregáveis.
 - **Narração gerada?** O diretor escreve o roteiro para você gerar a voz no Google AI Studio (ou onde preferir).

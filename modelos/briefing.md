@@ -3,6 +3,21 @@
 > Preenchido pelo diretor a partir das suas respostas. Nada aqui é inventado: o que não foi respondido fica como **a confirmar**.
 > Pode editar à vontade. O plano de edição (`plano.md`) parte deste arquivo.
 
+## Andamento
+
+> Atualizado pelo diretor a cada etapa. É o ponto de retomada para qualquer sessão ou agente.
+
+- [ ] 1. Briefing (perguntas obrigatórias + resumo confirmado)
+- [ ] 2. Material estudado (inventário, contexto, sites) e pendências avisadas
+- [ ] 3. Direção de estilo aprovada
+- [ ] 4. Roteiro de narração aprovado e áudio recebido *(ou: não se aplica)*
+- [ ] 5. Plano de edição aprovado
+- [ ] 6. Edição programada
+- [ ] 7. Quadros de revisão aprovados
+- [ ] 8. Entrega REV00 (vídeo, capa, legenda, narração)
+
+**Agora:** briefing · **Próximo:** — · **Aguardando você:** —
+
 ## 1. Finalidade
 
 - **Para quem (cliente / marca):** <!-- kit de marcas/ · marca nova · sem marca — nunca presumido -->
@@ -56,7 +71,12 @@
 - [ ] Roteiro de narração (se for gerar a voz fora)
 - [ ] Outros:
 
-## 7. Prazo e pendências
+## 7. Prazo, aprovação e pendências
 
 - **Prazo:**
-- **Pendências de material:** <!-- o diretor lista aqui o que falta, com o porquê -->
+- **Quem aprova:** <!-- só você · também o cliente -->
+- **Pendências de material:** <!-- o que falta, por que faz falta, em que pasta colocar e como obter -->
+
+## 8. Resumo confirmado
+
+<!-- 5 a 8 linhas com o que o diretor entendeu, confirmadas pela pessoa antes de seguir (com a data). -->

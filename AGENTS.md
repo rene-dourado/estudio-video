@@ -33,15 +33,16 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
 ## Início de toda sessão
 
 1. **Confira os pré-requisitos em silêncio:** `node_modules/` existe; `estudio.local.json` aponta para uma pasta de dados válida; `ffmpeg`, `ffprobe` e `yt-dlp` respondem; o Python do `estudio.local.json` importa `faster_whisper`; as skills `remotion-best-practices` e `watch` estão disponíveis. Se faltar algo, rode `npm run instalar` e avise que skills novas só aparecem numa sessão nova.
-2. **Liste os projetos** (`npm run estudio -- projetos`) e pergunte qual continuar, ou se é um vídeo novo. Para continuar, leia `briefing.md`, `plano.md` e o que houver em `6_entregas/` antes de agir.
+2. **Liste os projetos** (`npm run estudio -- projetos`) e pergunte qual continuar, ou se é um vídeo novo. Para continuar, leia `briefing.md` (inclusive o *Andamento*), `plano.md` e o que houver em `6_entregas/` antes de agir, e siga o *Modo guiado* (abaixo).
 3. **Vídeo novo:** pergunte um nome curto e **para quem é o vídeo** (cliente ou marca). O estúdio é genérico: **nunca suponha uma marca**, nem a mais usada. Ofereça os kits que existem em `marcas/`, "marca nova (montar kit)" e "sem marca". Crie a pasta com `npm run novo -- "nome" [--marca <kit>]`. Explique em duas linhas onde a pessoa coloca cada coisa (brutos, referências de estilo, referências de contexto, `sites.md`) e siga para o briefing.
 
 ## O fluxo (detalhes em guias/2-fluxo-de-trabalho.md)
 
-1. **Briefing.** Siga `modelos/perguntas.md`: rodadas curtas de múltipla escolha, uma por vez, partindo do material que já está na pasta. Use a ferramenta de perguntas do ambiente (`AskUserQuestion` no Claude Code); sem ela, pergunte em texto com opções numeradas. Registre as respostas em `briefing.md`. Três perguntas são **obrigatórias no início**:
+1. **Briefing.** Siga `modelos/perguntas.md`: rodadas curtas de múltipla escolha, uma por vez, partindo do material que já está na pasta. Use a ferramenta de perguntas do ambiente (`AskUserQuestion` no Claude Code); sem ela, pergunte em texto com opções numeradas. Registre as respostas em `briefing.md`. As **perguntas obrigatórias** (seção 1 de `perguntas.md`) são sempre feitas, a menos que a pessoa já tenha respondido ou o material responda sem dúvida; nesse caso, diga o que entendeu e peça confirmação. As que mudam os entregáveis:
    - **É para o Instagram?** Se sim, a **legenda do post** (`modelos/legenda-instagram.md`) entra nos entregáveis.
    - **Vai ter narração gerada?** Se sim, você escreve o **roteiro de narração** (`modelos/narracao.md`) para a pessoa gerar a voz no Google AI Studio ou na ferramenta que preferir, e a edição se sincroniza com o áudio que ela devolver em `4_audio/`.
    - **Há sites de referência?** Se sim, peça a URL e um contexto breve de cada um: o que aproveitar (identidade visual, textos e dados, fotos, ritmo, estrutura) e o que ignorar. A pessoa pode responder na conversa ou preencher o `sites.md` da pasta; você registra tudo no `sites.md`.
+   - O briefing **termina com um resumo do que você entendeu**, as pendências de material e a pergunta "posso seguir?". Só depois disso o trabalho avança.
 2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos); skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
 3. **Direção de estilo.** A partir das referências, proponha duas ou três direções concretas (paleta em HEX, fontes, linguagem de movimento, transições, textura, textos na tela). Se ajudar, mostre um still de teste de cada. Guia: `guias/6-identidade-visual.md`.
 4. **Roteiro de narração** (se houver): escreva `6_entregas/REVnn/narracao.md`, com tempo-alvo por bloco casado com as cenas. Espere o áudio.
@@ -60,6 +61,21 @@ Para cada linha do `sites.md`, aproveite **só o que o contexto pede**:
 - **Conteúdo** (textos, dados, diferenciais, endereço, contatos): leia a página como texto e salve um resumo com a URL e a data da consulta em `3_referencias_contexto/sites/<dominio>.md`. Esse resumo passa a ser fonte de dados como qualquer documento. Se um dado do site contradiz um documento, pergunte qual vale.
 - Feche abas e não aceite cookies não essenciais, não faça login nem preencha formulários. Vídeos do site não tocam. Imagens e textos de sites de terceiros servem de referência; só entram no vídeo se a pessoa confirmar que pode usá-los.
 - Site fora do ar ou que pede login: avise e peça capturas ou o texto.
+
+## Modo guiado (sempre)
+
+Toda edição é **conduzida passo a passo**, para que dar contexto seja fácil para quem usa, mesmo que nunca tenha editado. Isso vale em qualquer fase, para qualquer tipo de vídeo e em toda sessão, inclusive ao retomar um projeto.
+
+1. **Mapa no começo.** Ao abrir um projeto (novo ou retomado), mostre as etapas em uma linha cada e marque onde estamos: briefing → material → estilo → narração → plano → edição → conferência → entrega. Ao retomar, resuma em até 5 linhas o que já foi decidido (do `briefing.md` e do `plano.md`) antes de perguntar qualquer coisa.
+2. **Toda mensagem termina com três linhas:**
+   - **Agora:** o que acabou de ser feito ou decidido;
+   - **Próximo:** o que vem a seguir;
+   - **Preciso de você:** a ação ou a resposta que falta, com um exemplo de boa resposta (ou "nada; sigo sozinho").
+3. **Perguntas que facilitam a resposta.** Sempre de múltipla escolha, com a sua recomendação primeiro e uma frase sobre o que cada opção muda no vídeo. Em perguntas abertas, dê um exemplo pronto para adaptar ("ex.: comprador de primeiro imóvel, 30 a 40 anos").
+4. **Ensine a entregar material.** Quando pedir algo, diga em que pasta colocar, com que nome e como obter. Por exemplo: como exportar do celular sem perder qualidade, como tirar print de uma página inteira, como baixar o áudio do AI Studio, que tipo de plano gravar ("10 s parado na porta, depois entrando devagar").
+5. **Confirme o entendimento.** Antes de cada ponto de aprovação, resuma em linguagem simples o que vai ser feito e o que a pessoa deve olhar para aprovar (ex.: "confira se os rótulos batem com os ambientes e se o ritmo te agrada; cores e fontes eu ajusto depois").
+6. **Andamento visível.** Mantenha a seção *Andamento* do `briefing.md` atualizada (etapas feitas, em curso e pendentes). Ela é o ponto de retomada para qualquer agente.
+7. **Sem pular etapas em silêncio.** Se uma etapa não se aplica (ex.: sem narração), diga que ela foi pulada e por quê.
 
 ## Postura de diretor
 
