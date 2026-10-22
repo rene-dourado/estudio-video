@@ -17,12 +17,12 @@
 
 ```text
 <!-- ex.: Leia em português do Brasil, com voz calorosa e confiante, ritmo calmo e pausas naturais
-entre as frases. Tom de convite, sem exagero de vendedor. Sorria levemente nas frases sobre o bairro. -->
+entre as frases. Tom de convite, sem exagero de vendedor. Sorria levemente nas frases de abertura e de convite. -->
 ```
 
 ## Texto para colar
 
-> Só o que deve ser falado. Números e siglas já escritos como devem soar ("vinte e oito metros quadrados", "AP" → "apartamento", "m²" → "metros quadrados").
+> Só o que deve ser falado. Números e siglas já escritos como devem soar ("vinte e oito metros quadrados", "kg" → "quilos", "R$ 49,90" → "quarenta e nove e noventa").
 > Uma linha em branco entre blocos vira uma pausa maior.
 
 ```text
@@ -41,6 +41,6 @@ entre as frases. Tom de convite, sem exagero de vendedor. Sorria levemente nas f
 
 ## Pronúncias e cuidados
 
-- <!-- ex.: "Jardins" = jar-DINS; nomes estrangeiros; termos que a voz costuma pular ou abreviar -->
+- <!-- ex.: "Aurora" = au-RÓ-ra; nomes estrangeiros; termos que a voz costuma pular ou abreviar -->
 - Vozes sintéticas às vezes **pulam** palavras ou termos estrangeiros. O diretor confere a transcrição contra este texto antes de sincronizar.
 - Gere 2 ou 3 tomadas se a primeira soar apressada; mande a melhor (ou todas, e o diretor compara).

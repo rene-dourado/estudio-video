@@ -61,7 +61,7 @@
 
 - **Precisa aparecer:**
 - **Não pode aparecer:** <!-- ex.: preço, vaga, rosto de terceiros, logo de cliente sem autorização -->
-- **Avisos legais:** <!-- ex.: "Imagens ilustrativas", CRECI, registro de incorporação, créditos -->
+- **Avisos legais:** <!-- ex.: "Imagens ilustrativas", registro profissional, termos de promoção, créditos -->
 
 ## 6. Entregáveis
 

@@ -1,5 +1,5 @@
 // Cria a pasta de um vídeo novo com a estrutura padrão e o briefing em branco.
-//   npm run novo -- "Reels apartamento 502" [--marca minha-imobiliaria]
+//   npm run novo -- "Reels colecao verao" [--marca minha-marca]
 // Número = maior existente + 1. Com --marca, copia o kit de dados/marcas/<marca>/ para 2_referencias_estilo/marca/,
 // assim o vídeo guarda a identidade como ela era quando foi feito.
 import fs from 'node:fs';

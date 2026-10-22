@@ -11,10 +11,10 @@ Do primeiro "quero um vídeo" até o arquivo pronto para publicar. O diretor (Cl
 ## 0. Criar o projeto
 
 ```text
-Quero fazer um vídeo novo: Reels do apartamento 502, marca minha-imobiliaria.
+Quero fazer um vídeo novo: Reels de lançamento da coleção de verão, marca minha-marca.
 ```
 
-O diretor roda `npm run novo -- "Reels apartamento 502" --marca minha-imobiliaria` e cria:
+O diretor roda `npm run novo -- "Reels colecao verao" --marca minha-marca` e cria:
 
 | Pasta | O que você coloca |
 |---|---|
@@ -60,7 +60,7 @@ A partir das suas referências, o diretor propõe duas ou três direções concr
 ## 6. Transcrição
 
 ```text
-npm run estudio -- NNN transcrever "4_audio/narracao.wav" --prompt "Residencial Jardins, Bela Vista, rooftop"
+npm run estudio -- NNN transcrever "4_audio/narracao.wav" --prompt "Café Aurora, cold brew, Vila Nova"
 ```
 
 Gera `palavras.json` (início e fim de cada palavra), `transcript.md` e `legenda.srt` em `5_trabalho/transcricao/`. O `--prompt` com nomes próprios evita erros de grafia. O diretor compara com o roteiro: se a voz pulou ou trocou algo, o texto da tela segue o que foi **dito**, e ele avisa você.
@@ -99,7 +99,7 @@ Pediu mudança? Vira `REV01`, `REV02`... A anterior continua intacta. Se quiser,
 ## Pedidos que funcionam bem
 
 ```text
-Novo vídeo: Reels de 60 s da casa 3, marca minha-imobiliaria. Os brutos e a planta já estão na pasta.
+Novo vídeo: institucional de 60 s da obra da escola, sem marca definida. Os brutos e o memorial já estão na pasta.
 ```
 
 ```text

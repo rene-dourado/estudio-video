@@ -51,7 +51,7 @@ Faça depois das obrigatórias, só as que o material não responde.
 
 - **Identidade** (depois de estudar o material): **qual sensação o vídeo deve passar?** Proponha 3 ou 4 combinações *derivadas das referências* (ex.: "sofisticado e sereno", "vibrante e urbano", "técnico e preciso"). **Intensidade de movimento:** sutil · equilibrada · intensa. Depois, mostre duas ou três direções de estilo (paleta, fontes, ritmo, transições) e, se ajudar, um quadro de teste de cada. A galeria em `estilos/` é só repertório.
 - **Voz da narração** (se for gerar): proponha 2 ou 3 vozes e um tom (ex.: "feminina, calorosa, ritmo calmo").
-- **Avisos legais:** "Imagens ilustrativas" · registro/CRECI · créditos · nenhum.
+- **Avisos legais:** "Imagens ilustrativas" · registro profissional (CRECI, CRM, OAB...) · créditos · nenhum.
 - **Versões extras:** corte curto para stories · versão horizontal · versão sem textos · nenhuma.
 - **Quem aprova:** só você · também o cliente (o diretor prepara um resumo curto para o cliente aprovar).
 

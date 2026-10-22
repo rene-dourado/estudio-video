@@ -13,23 +13,23 @@ O estúdio não supõe um tipo só. O briefing define o tipo, e cada tipo muda o
 
 ## Montagem de brutos (sem ninguém falando)
 
-É o caso mais comum para imóveis e obras: clipes de celular ou drone, fotos, às vezes renders, mais uma narração gerada fora e uma música.
+É o caso mais comum em imóveis, obras, eventos, turismo e produtos: clipes de celular ou drone, fotos, às vezes renders, mais uma narração gerada fora e uma música.
 
 1. **Inventário e pranchas** (`sondar`): saber o que existe, a orientação de cada clipe (vertical ou horizontal) e onde estão os bons momentos. Clipes de celular marcados como **HDR** ou com **taxa variável** ganham uma cópia de trabalho (`proxy`) em `5_trabalho/midia/`, que é a usada no código.
 2. **Escolha dos trechos.** Para cada cena do plano: arquivo, início e duração. Prefira trechos estáveis, com movimento contínuo, sem pessoas, placas ou reflexos indesejados. Anote no plano o porquê de cada escolha quando houver alternativa.
 3. **Movimento.** `Clipe` e `FotoMovimento` aplicam um zoom lento (padrão 1,00 → 1,04–1,06) que dá vida e esconde pequenos tremores. `velocidade` abaixo de 1 alonga clipes curtos. `foco` escolhe o que fica no quadro quando um horizontal vira vertical.
 4. **Ritmo.** Com narração, cada corte cai numa palavra (`quando(palavras, 'cozinha')`). Sem narração, os cortes seguem o tempo da música; 2 a 4 s por plano é um bom ponto de partida para Reels.
-5. **Textos.** Títulos por ambiente, rótulos de diferenciais, dados confirmados no contexto, tela final com contato e CTA. A legenda da fala pode ficar só onde não há título (assim a tela não fica poluída).
+5. **Textos.** Títulos por cena (ambiente, etapa, produto), rótulos de diferenciais, dados confirmados no contexto, tela final com contato e CTA. A legenda da fala pode ficar só onde não há título (assim a tela não fica poluída).
 6. **Cor.** Se os clipes vêm de aparelhos diferentes, uniformize com um `filtro` CSS leve (brilho, contraste, saturação, temperatura) e confira nos stills lado a lado.
 7. **Qualidade do bruto.** Clipe com resolução baixa? Avise antes. Upscale e estabilização são possíveis com ferramentas externas (ex.: Real-ESRGAN, FFmpeg vidstab), sempre gerando cópias em `5_trabalho/`, nunca alterando o original, e só com a sua aprovação para instalar.
 
-### Lições de projetos anteriores
+### Erros comuns (e como evitar)
 
-- Rótulo e imagem precisam bater: "Fechadura digital" mostrando parede lisa reprova o quadro.
+- Rótulo e imagem precisam bater: um rótulo "Fechadura digital" sobre uma parede lisa, ou "Sabor morango" sobre o pote de baunilha, reprova o quadro.
 - Selos, marcas d'água e textos de terceiros nos brutos: recorte para fora ou cubra, e confira em **todos** os recortes.
-- Elementos de terreno vizinho, vagas ou itens que não fazem parte do produto não podem ser apontados como se fizessem.
-- Plantas animadas precisam respeitar a orientação real (nada espelhado).
-- Legenda e textos longe da área de nome, descrição e botões do Reels.
+- Nada que não faz parte do que se oferece (o imóvel vizinho, um acessório vendido à parte, o espaço de outro evento) pode ser apontado como se fizesse.
+- Plantas, mapas e diagramas animados respeitam a orientação real (nada espelhado ou girado).
+- Legenda e textos longe da área de nome, descrição e botões da plataforma (zonas seguras).
 
 ## Fotos animadas
 

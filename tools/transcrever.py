@@ -1,7 +1,7 @@
 """Transcrição local, gratuita, com o tempo exato de cada palavra.
 
 Uso (o scripts/estudio.mjs resolve os caminhos):
-    npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Residencial Jardins, Bela Vista"]
+    npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Café Aurora, cold brew"]
     python tools/transcrever.py <audio-ou-video> <pasta-de-saida> [--idioma pt] [--modelo large-v3-turbo] [--prompt "..."]
 
 Gera em <pasta-de-saida>:

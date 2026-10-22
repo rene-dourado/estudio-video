@@ -10,9 +10,9 @@
 
 <!-- corpo: 2–4 linhas curtas ou tópicos com o essencial (o vídeo já mostrou; aqui reforça e dá os dados) -->
 
-<!-- CTA: o que fazer agora (ex.: "Chame no WhatsApp (51) ...") -->
+<!-- CTA: o que fazer agora (ex.: "Chame no WhatsApp (00) 00000-0000") -->
 
-<!-- assinatura e avisos: perfil, CRECI, "Imagens ilustrativas", créditos -->
+<!-- assinatura e avisos: perfil, registro profissional, "Imagens ilustrativas", créditos -->
 
 <!-- 3–8 hashtags relevantes e locais; evite blocos enormes -->
 ```

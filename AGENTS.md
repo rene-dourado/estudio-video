@@ -71,7 +71,7 @@ Toda edição é **conduzida passo a passo**, para que dar contexto seja fácil 
    - **Agora:** o que acabou de ser feito ou decidido;
    - **Próximo:** o que vem a seguir;
    - **Preciso de você:** a ação ou a resposta que falta, com um exemplo de boa resposta (ou "nada; sigo sozinho").
-3. **Perguntas que facilitam a resposta.** Sempre de múltipla escolha, com a sua recomendação primeiro e uma frase sobre o que cada opção muda no vídeo. Em perguntas abertas, dê um exemplo pronto para adaptar ("ex.: comprador de primeiro imóvel, 30 a 40 anos").
+3. **Perguntas que facilitam a resposta.** Sempre de múltipla escolha, com a sua recomendação primeiro e uma frase sobre o que cada opção muda no vídeo. Em perguntas abertas, dê um exemplo pronto para adaptar ("ex.: pais de crianças pequenas, 30 a 40 anos").
 4. **Ensine a entregar material.** Quando pedir algo, diga em que pasta colocar, com que nome e como obter. Por exemplo: como exportar do celular sem perder qualidade, como tirar print de uma página inteira, como baixar o áudio do AI Studio, que tipo de plano gravar ("10 s parado na porta, depois entrando devagar").
 5. **Confirme o entendimento.** Antes de cada ponto de aprovação, resuma em linguagem simples o que vai ser feito e o que a pessoa deve olhar para aprovar (ex.: "confira se os rótulos batem com os ambientes e se o ritmo te agrada; cores e fontes eu ajusto depois").
 6. **Andamento visível.** Mantenha a seção *Andamento* do `briefing.md` atualizada (etapas feitas, em curso e pendentes). Ela é o ponto de retomada para qualquer agente.

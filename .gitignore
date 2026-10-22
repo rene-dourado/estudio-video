@@ -16,5 +16,5 @@ src/videos/*
 .claude/skills/
 .claude/settings.local.json
 skills-lock.json
-# Pasta pública montada a cada comando (hard links para o material do projeto).
+# Pasta pública montada a cada comando (espelho do material que o vídeo usa).
 .publico/

@@ -5,7 +5,7 @@
 //   npm run estudio -- 001 caminho                      mostra a pasta do projeto 001
 //   npm run estudio -- 001 sondar                       inventário e pranchas do material bruto
 //   npm run estudio -- 001 proxy "1_brutos/IMG_0423.MOV"   cópia H.264 SDR com fps constante em 5_trabalho/midia/
-//   npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Residencial Jardins, rooftop"]
+//   npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Café Aurora, cold brew"]
 //   npm run estudio -- 001 studio                       pré-visualização no navegador
 //   npm run estudio -- 001 still <Composicao> <quadro> [--guia]   quadro parado em 5_trabalho/stills/ (--guia: zonas seguras)
 //   npm run estudio -- 001 rascunho <Composicao>        render rápido, meia resolução, em 5_trabalho/rascunhos/
