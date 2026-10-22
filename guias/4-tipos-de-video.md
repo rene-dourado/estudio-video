@@ -15,7 +15,7 @@ O estúdio não supõe um tipo só. O briefing define o tipo, e cada tipo muda o
 
 É o caso mais comum para imóveis e obras: clipes de celular ou drone, fotos, às vezes renders, mais uma narração gerada fora e uma música.
 
-1. **Inventário e pranchas** (`sondar`): saber o que existe, a orientação de cada clipe (vertical ou horizontal) e onde estão os bons momentos.
+1. **Inventário e pranchas** (`sondar`): saber o que existe, a orientação de cada clipe (vertical ou horizontal) e onde estão os bons momentos. Clipes de celular marcados como **HDR** ou com **taxa variável** ganham uma cópia de trabalho (`proxy`) em `5_trabalho/midia/`, que é a usada no código.
 2. **Escolha dos trechos.** Para cada cena do plano: arquivo, início e duração. Prefira trechos estáveis, com movimento contínuo, sem pessoas, placas ou reflexos indesejados. Anote no plano o porquê de cada escolha quando houver alternativa.
 3. **Movimento.** `Clipe` e `FotoMovimento` aplicam um zoom lento (padrão 1,00 → 1,04–1,06) que dá vida e esconde pequenos tremores. `velocidade` abaixo de 1 alonga clipes curtos. `foco` escolhe o que fica no quadro quando um horizontal vira vertical.
 4. **Ritmo.** Com narração, cada corte cai numa palavra (`quando(palavras, 'cozinha')`). Sem narração, os cortes seguem o tempo da música; 2 a 4 s por plano é um bom ponto de partida para Reels.

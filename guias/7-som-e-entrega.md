@@ -12,7 +12,7 @@ Dicas de texto para voz: números e siglas por extenso; frases curtas; uma ideia
 
 ## Música
 
-- **Sempre com licença.** Opções: trilha que você já licenciou; bibliotecas livres de direitos com licença registrada; trilha original sintetizada por código (o diretor consegue gerar uma base simples); ou sem música no arquivo, escolhendo a música dentro do app (no Instagram, a biblioteca do próprio app).
+- **Sempre com licença.** Opções: trilha que você já licenciou; bibliotecas livres de direitos com licença registrada; trilha original sintetizada por código (uma base simples, gerada por script com FFmpeg ou Python, combinada antes, porque ainda não há uma ferramenta pronta no estúdio); ou sem música no arquivo, escolhendo a música dentro do app (no Instagram, a biblioteca do próprio app).
 - Registre no `plano.md` o arquivo, a origem e a licença.
 - Mixagem: música ~15 dB abaixo da voz enquanto ela fala (ducking), sobe nas pausas e na tela final, termina com fade (nunca corte seco).
 

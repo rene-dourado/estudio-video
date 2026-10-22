@@ -59,7 +59,7 @@ estudio-video/
 ├─ modelos/               perguntas e briefing · plano · narração · legenda do Instagram · checklist · kit de marca
 ├─ estilos/               galeria do projeto original (inspiração)
 ├─ scripts/               estudio.mjs (comando único) · novo-projeto.mjs · instalar.mjs
-├─ tools/                 transcrever.py · sondar.py · finalizar.py
+├─ tools/                 transcrever.py · sondar.py · proxy.py · finalizar.py
 ├─ src/                   Remotion: _shared/ (peças) · estilos/ · videos/ (seus vídeos, fora do Git)
 └─ dados/                 seus projetos e marcas (fora do Git; pode apontar para outra pasta)
 ```

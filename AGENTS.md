@@ -43,14 +43,14 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
    - **Vai ter narração gerada?** Se sim, você escreve o **roteiro de narração** (`modelos/narracao.md`) para a pessoa gerar a voz no Google AI Studio ou na ferramenta que preferir, e a edição se sincroniza com o áudio que ela devolver em `4_audio/`.
    - **Há sites de referência?** Se sim, peça a URL e um contexto breve de cada um: o que aproveitar (identidade visual, textos e dados, fotos, ritmo, estrutura) e o que ignorar. A pessoa pode responder na conversa ou preencher o `sites.md` da pasta; você registra tudo no `sites.md`.
    - O briefing **termina com um resumo do que você entendeu**, as pendências de material e a pergunta "posso seguir?". Só depois disso o trabalho avança.
-2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos); skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
+2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos). Se ele marcar um clipe com taxa variável ou HDR, gere uma cópia de trabalho com `npm run estudio -- NNN proxy "1_brutos/<arquivo>"` e use a cópia no código; skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
 3. **Direção de estilo.** A partir das referências, proponha duas ou três direções concretas (paleta em HEX, fontes, linguagem de movimento, transições, textura, textos na tela). Se ajudar, mostre um still de teste de cada. Guia: `guias/6-identidade-visual.md`.
 4. **Roteiro de narração** (se houver): escreva `6_entregas/REVnn/narracao.md`, com tempo-alvo por bloco casado com as cenas. Espere o áudio.
 5. **Plano de edição** (`plano.md`, modelo em `modelos/plano.md`). **Ponto de aprovação:** nada é programado antes do OK.
 6. **Transcrever** a narração ou a fala: `npm run estudio -- NNN transcrever "4_audio/<arquivo>" --prompt "<nomes próprios>"`. Compare a transcrição com o roteiro: vozes sintéticas pulam palavras. O texto na tela segue o que a voz **realmente** diz.
 7. **Programar** em `src/videos/<NNN>-<slug>/`, com as peças de `src/_shared/` e a skill `remotion-best-practices`. Todo corte e todo texto ancorado nas palavras (`quando()` em `legendas.tsx`).
-8. **Conferir.** `npm run typecheck`; stills de todas as cenas e do meio das transições (`npm run estudio -- NNN still <Comp> <quadro>`), com a guia de zonas seguras ligada; um rascunho rápido se o ritmo precisar ser visto (`rascunho`). Revise você mesmo com `modelos/checklist-entrega.md` e mostre os stills principais. **Ponto de aprovação** antes do render final.
-9. **Entregar.** `npm run estudio -- NNN render <Comp> REVnn <nome>`: render em alta qualidade, finalização (-14 LUFS, pico -1 dBTP, H.264 compatível) e cópia do código. Na mesma pasta `REVnn/`: capa (composição de 1 quadro, `still`), legenda do post e roteiro de narração. Informe caminho, duração, resolução, loudness e **o que não foi conferido**.
+8. **Conferir.** `npm run typecheck`; stills de todas as cenas e do meio das transições com a guia de zonas seguras (`npm run estudio -- NNN still <Comp> <quadro> --guia`; toda composição de vídeo aceita a prop `guiaZonas` e desenha `<GuiaZonas>`); com HDR, compare um still com o quadro visto no celular; um rascunho rápido se o ritmo precisar ser visto (`rascunho`). Revise você mesmo com `modelos/checklist-entrega.md` e mostre os stills principais. **Ponto de aprovação** antes do render final.
+9. **Entregar.** `npm run estudio -- NNN render <Comp> REVnn <nome>`: render em alta qualidade, finalização (-14 LUFS, pico -1 dBTP, H.264 compatível) e cópia do código. Na mesma pasta `REVnn/`: capa (uma composição de 1 quadro, gerada com `npm run estudio -- NNN capa <Comp> REVnn`), legenda do post e roteiro de narração. Informe caminho, duração, resolução, loudness e **o que não foi conferido**.
 10. **Revisões.** Cada pedido de mudança vira a próxima revisão (`REV01`, `REV02`...). Nunca sobrescreva uma entrega.
 
 ## Sites de referência
@@ -109,13 +109,14 @@ guias/                    1 primeiros passos · 2 fluxo · 3 manual do Remotion 
                           5 direção editorial · 6 identidade visual · 7 som e entrega
 modelos/                  perguntas e briefing · plano · narração · legenda do Instagram · checklist · marca-exemplo
 estilos/                  galeria do projeto original (inspiração, não regra)
-scripts/estudio.mjs       comando único: projetos, sondar, transcrever, studio, still, rascunho, render, finalizar
+scripts/estudio.mjs       comando único: projetos, sondar, proxy, transcrever, studio, still, rascunho, render, capa, finalizar, medir
 scripts/novo-projeto.mjs  cria a pasta de um vídeo novo
 src/_shared/              midia.tsx (Clipe, FotoMovimento) · legendas.tsx (LegendaFala, quando) · marca.ts (useMarca)
                           zonas-seguras.tsx · synchronized-split.tsx e enquadramento.ts (pessoa falando)
 src/estilos/              código da galeria
 src/videos/<NNN-slug>/    código de cada vídeo (fora do Git)
-tools/                    transcrever.py (faster-whisper) · sondar.py (inventário) · finalizar.py (loudness e codificação)
+tools/                    transcrever.py (faster-whisper) · sondar.py (inventário) · proxy.py (cópia H.264 SDR, fps constante)
+                          finalizar.py (loudness e codificação)
 ```
 
 Comandos: `npm run estudio -- ajuda`, `npm run novo -- "nome"`, `npm run typecheck`, `npm run studio` (galeria).

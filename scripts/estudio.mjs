@@ -4,6 +4,7 @@
 //   npm run estudio -- projetos                         lista os projetos de vídeo
 //   npm run estudio -- 001 caminho                      mostra a pasta do projeto 001
 //   npm run estudio -- 001 sondar                       inventário e pranchas do material bruto
+//   npm run estudio -- 001 proxy "1_brutos/IMG_0423.MOV"   cópia H.264 SDR com fps constante em 5_trabalho/midia/
 //   npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Residencial Jardins, rooftop"]
 //   npm run estudio -- 001 studio                       pré-visualização no navegador
 //   npm run estudio -- 001 still <Composicao> <quadro> [--guia]   quadro parado em 5_trabalho/stills/ (--guia: zonas seguras)
@@ -71,7 +72,21 @@ const registrar = () => {
 // o vídeo usa. É um espelho: copia só o que mudou (tamanho ou data) e remove o que saiu do projeto.
 // Hard links não servem: o Remotion enxerga os arquivos do OneDrive linkados como links simbólicos.
 // Apagar .publico/ nunca afeta os originais.
-const PUBLICO = [PASTAS.brutos, PASTAS.estilo, PASTAS.audio, `${PASTAS.trabalho}/transcricao`, `${PASTAS.trabalho}/midia`];
+// Sempre entram o kit da marca, o áudio, as transcrições e as cópias de trabalho (5_trabalho/midia, ver tools/proxy.py).
+// Os brutos e as demais referências de estilo, que podem ter GBs, só entram se o código do vídeo citar a pasta.
+const PUBLICO_FIXO = [`${PASTAS.estilo}/marca`, PASTAS.audio, `${PASTAS.trabalho}/transcricao`, `${PASTAS.trabalho}/midia`];
+
+const pastasPublicas = (numero) => {
+  const codigo = acharCodigo(numero);
+  const texto = codigo
+    ? fs.readdirSync(codigo, {recursive: true}).filter((f) => /\.(tsx?|json)$/.test(String(f)))
+        .map((f) => fs.readFileSync(path.join(codigo, String(f)), 'utf8')).join('\n')
+    : '';
+  const extras = [];
+  if (texto.includes(`${PASTAS.brutos}/`)) extras.push(PASTAS.brutos);
+  if (new RegExp(`${PASTAS.estilo}/(?!marca/)`).test(texto)) extras.push(PASTAS.estilo);
+  return extras.includes(PASTAS.estilo) ? [...extras, ...PUBLICO_FIXO.filter((p) => !p.startsWith(PASTAS.estilo))] : [...extras, ...PUBLICO_FIXO];
+};
 
 const espelhar = (origem, alvo) => {
   fs.mkdirSync(alvo, {recursive: true});
@@ -96,7 +111,15 @@ const espelhar = (origem, alvo) => {
 
 const montarPublico = (proj) => {
   const destino = path.join(RAIZ, '.publico', proj.numero);
-  for (const sub of PUBLICO) espelhar(path.join(proj.pasta, sub), path.join(destino, sub));
+  const pastas = pastasPublicas(proj.numero);
+  // Remove do espelho as pastas de topo que deixaram de ser usadas.
+  const topo = new Set(pastas.map((p) => p.split('/')[0]));
+  if (fs.existsSync(destino)) for (const d of fs.readdirSync(destino)) if (!topo.has(d)) fs.rmSync(path.join(destino, d), {recursive: true, force: true});
+  const estiloEspelho = path.join(destino, PASTAS.estilo);
+  if (!pastas.includes(PASTAS.estilo) && fs.existsSync(estiloEspelho)) {
+    for (const d of fs.readdirSync(estiloEspelho)) if (d !== 'marca') fs.rmSync(path.join(estiloEspelho, d), {recursive: true, force: true});
+  }
+  for (const sub of pastas) espelhar(path.join(proj.pasta, sub), path.join(destino, sub));
   return destino;
 };
 
@@ -131,6 +154,12 @@ if (!alvo || alvo === 'ajuda') {
     case 'sondar':
       python('sondar.py', [proj.pasta, ...resto]);
       break;
+    case 'proxy': {
+      const [arquivo, ...opcoes] = resto;
+      if (!arquivo) throw new Error('Uso: proxy "1_brutos/<arquivo>" [--fps 30] [--altura 1920] [--sem-audio]');
+      python('proxy.py', [proj.pasta, arquivo, ...opcoes]);
+      break;
+    }
     case 'transcrever': {
       const [arquivo, ...opcoes] = resto;
       if (!arquivo) throw new Error('Informe o arquivo de áudio ou vídeo, relativo à pasta do projeto.');

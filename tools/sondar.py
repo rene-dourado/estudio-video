@@ -88,6 +88,13 @@ def main():
                 res = f"{w}x{h}" + (" (vertical)" if h > w else "")
                 taxa = (f"{fps(v):.2f}" + (" **variável**" if variavel(v) else "")) if tipo == "vídeo" else ""
                 cv = v.get("codec_name", "")
+                if tipo == "vídeo":
+                    if v.get("color_transfer") in ("arib-std-b67", "smpte2084"):
+                        cv += " **HDR**"
+                    if rotacao(v):
+                        cv += f" (girado {rotacao(v)}°)"
+                    if max(w, h) > 2160:
+                        cv += " 4K+"
             ca = f"{au.get('codec_name', '')} {int(au.get('sample_rate', 0)) // 1000} kHz" if au else "-"
             link = ""
             if tipo == "vídeo" and dur > 0:
@@ -99,13 +106,22 @@ def main():
                           if tipo != "imagem" else f"| {pasta} | {rel} | {tipo} | - | {res} | - | {cv} | - | |")
 
     linhas += ["", f"Total: {total['video']} vídeos, {total['imagem']} imagens, {total['audio']} áudios."]
+    total_linha = len(linhas) - 1
+    avisos = []
     if any("**variável**" in l for l in linhas):
-        linhas += ["", "Clipes com taxa **variável**: se o Remotion falhar com \"No frame found at position\", gere uma cópia com taxa "
-                   "constante em 5_trabalho/midia/ (ex.: `ffmpeg -i <bruto> -fps_mode cfr -r 30 -c:v libx264 -crf 16 -c:a aac "
-                   "5_trabalho/midia/<nome>.mp4`) e use a cópia no código. O bruto original não é alterado."]
+        avisos.append("taxa de quadros **variável** (pode causar \"No frame found at position\" no Remotion)")
+    if any("**HDR**" in l for l in linhas):
+        avisos.append("**HDR** (a cor pode sair lavada ou estourada; confira um still contra o celular)")
+    if avisos:
+        linhas += ["", "Recomendado: usar cópias de trabalho dos clipes com " + " e ".join(avisos) + ". Gere com "
+                   "`npm run estudio -- NNN proxy \"1_brutos/<arquivo>\"` (H.264, SDR, fps constante, em 5_trabalho/midia/) "
+                   "e use a cópia no código. O bruto original não é alterado."]
     trabalho.mkdir(parents=True, exist_ok=True)
     (trabalho / "inventario.md").write_text("\n".join(linhas) + "\n", encoding="utf-8")
-    print("\n".join(linhas[-1:]) + f" -> {trabalho / 'inventario.md'}")
+    print(linhas[total_linha] + f" -> {trabalho / 'inventario.md'}")
+    for aviso in linhas[total_linha + 1:]:
+        if aviso:
+            print(aviso)
 
 
 if __name__ == "__main__":

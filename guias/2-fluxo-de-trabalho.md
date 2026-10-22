@@ -38,7 +38,8 @@ O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de
 
 ## 2. Estudo do material
 
-- `npm run estudio -- NNN sondar`: inventário (`5_trabalho/inventario.md`) com duração, resolução, orientação e áudio de cada arquivo, e uma **prancha** de quadros de cada vídeo para escolher trechos sem assistir tudo.
+- `npm run estudio -- NNN sondar`: inventário (`5_trabalho/inventario.md`) com duração, resolução, orientação e áudio de cada arquivo, e uma **prancha** de quadros de cada vídeo para escolher trechos sem assistir tudo. Ele avisa quando um clipe de celular é HDR ou tem taxa de quadros variável.
+- `npm run estudio -- NNN proxy "1_brutos/<arquivo>"`: cópia de trabalho em H.264, SDR, com fps constante e rotação aplicada, em `5_trabalho/midia/`. Use para clipes HDR, com taxa variável ou muito pesados. O bruto não muda.
 - Skill `watch`: o diretor "assiste" aos vídeos (quadros e transcrição) quando precisa entender movimento, fala ou detalhes.
 - Contexto: lê os PDFs e documentos (texto com `pdftotext`; plantas e páginas escaneadas como imagem, com `pdftoppm`).
 - Sites: visita cada site do `sites.md` e aproveita só o que você pediu. Capturas de estilo vão para `2_referencias_estilo/sites/`, e resumos de conteúdo, com URL e data, para `3_referencias_contexto/sites/`.
@@ -74,7 +75,7 @@ Gera `palavras.json` (início e fim de cada palavra), `transcript.md` e `legenda
 ## 8. Conferência (ponto de aprovação)
 
 1. `npm run typecheck`.
-2. Stills de cada cena e do meio de cada transição, com a guia de zonas seguras ligada: `npm run estudio -- NNN still <Composicao> <quadro>` (saem em `5_trabalho/stills/`).
+2. Stills de cada cena e do meio de cada transição, com a guia de zonas seguras: `npm run estudio -- NNN still <Composicao> <quadro> --guia` (saem em `5_trabalho/stills/`).
 3. Se o ritmo precisa ser visto, um rascunho rápido em meia resolução: `npm run estudio -- NNN rascunho <Composicao>`.
 4. Pré-visualização ao vivo no navegador: `npm run estudio -- NNN studio`.
 5. O diretor revisa com o [checklist](../modelos/checklist-entrega.md) e mostra os quadros principais para você aprovar.
