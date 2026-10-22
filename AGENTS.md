@@ -18,6 +18,7 @@ Responda sempre no idioma da pessoa (padrão: português do Brasil).
 ├─ marcas/<marca>/            kit reutilizável: marca.json, logos/, fontes/ (modelo em modelos/marca-exemplo/)
 └─ projetos/<NNN - nome>/     um vídeo por pasta
    ├─ briefing.md             respostas do briefing (você preenche)
+   ├─ sites.md                sites de referência: URL + o que aproveitar de cada um (estilo, conteúdo ou ambos)
    ├─ plano.md                plano de edição (aprovação obrigatória)
    ├─ 1_brutos/               vídeos, fotos e áudios gravados — SOMENTE LEITURA
    ├─ 2_referencias_estilo/   identidade visual: marca/, logos, paletas, fontes, prints e links de referência
@@ -33,14 +34,15 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
 
 1. **Confira os pré-requisitos em silêncio:** `node_modules/` existe; `estudio.local.json` aponta para uma pasta de dados válida; `ffmpeg`, `ffprobe` e `yt-dlp` respondem; o Python do `estudio.local.json` importa `faster_whisper`; as skills `remotion-best-practices` e `watch` estão disponíveis. Se faltar algo, rode `npm run instalar` e avise que skills novas só aparecem numa sessão nova.
 2. **Liste os projetos** (`npm run estudio -- projetos`) e pergunte qual continuar, ou se é um vídeo novo. Para continuar, leia `briefing.md`, `plano.md` e o que houver em `6_entregas/` antes de agir.
-3. **Vídeo novo:** pergunte um nome curto (e a marca, se houver kit em `marcas/`) e crie a pasta com `npm run novo -- "nome" [--marca <kit>]`. Explique em duas linhas onde a pessoa coloca cada coisa (brutos, referências de estilo, referências de contexto) e siga para o briefing.
+3. **Vídeo novo:** pergunte um nome curto e **para quem é o vídeo** (cliente ou marca). O estúdio é genérico: **nunca suponha uma marca**, nem a mais usada. Ofereça os kits que existem em `marcas/`, "marca nova (montar kit)" e "sem marca". Crie a pasta com `npm run novo -- "nome" [--marca <kit>]`. Explique em duas linhas onde a pessoa coloca cada coisa (brutos, referências de estilo, referências de contexto, `sites.md`) e siga para o briefing.
 
 ## O fluxo (detalhes em guias/2-fluxo-de-trabalho.md)
 
-1. **Briefing.** Siga `modelos/perguntas.md`: rodadas curtas de múltipla escolha, uma por vez, partindo do material que já está na pasta. Use a ferramenta de perguntas do ambiente (`AskUserQuestion` no Claude Code); sem ela, pergunte em texto com opções numeradas. Registre as respostas em `briefing.md`. Duas perguntas são **obrigatórias no início**:
+1. **Briefing.** Siga `modelos/perguntas.md`: rodadas curtas de múltipla escolha, uma por vez, partindo do material que já está na pasta. Use a ferramenta de perguntas do ambiente (`AskUserQuestion` no Claude Code); sem ela, pergunte em texto com opções numeradas. Registre as respostas em `briefing.md`. Três perguntas são **obrigatórias no início**:
    - **É para o Instagram?** Se sim, a **legenda do post** (`modelos/legenda-instagram.md`) entra nos entregáveis.
    - **Vai ter narração gerada?** Se sim, você escreve o **roteiro de narração** (`modelos/narracao.md`) para a pessoa gerar a voz no Google AI Studio ou na ferramenta que preferir, e a edição se sincroniza com o áudio que ela devolver em `4_audio/`.
-2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos); skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo. Diga **exatamente** o que falta e por quê.
+   - **Há sites de referência?** Se sim, peça a URL e um contexto breve de cada um: o que aproveitar (identidade visual, textos e dados, fotos, ritmo, estrutura) e o que ignorar. A pessoa pode responder na conversa ou preencher o `sites.md` da pasta; você registra tudo no `sites.md`.
+2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos); skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
 3. **Direção de estilo.** A partir das referências, proponha duas ou três direções concretas (paleta em HEX, fontes, linguagem de movimento, transições, textura, textos na tela). Se ajudar, mostre um still de teste de cada. Guia: `guias/6-identidade-visual.md`.
 4. **Roteiro de narração** (se houver): escreva `6_entregas/REVnn/narracao.md`, com tempo-alvo por bloco casado com as cenas. Espere o áudio.
 5. **Plano de edição** (`plano.md`, modelo em `modelos/plano.md`). **Ponto de aprovação:** nada é programado antes do OK.
@@ -49,6 +51,15 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
 8. **Conferir.** `npm run typecheck`; stills de todas as cenas e do meio das transições (`npm run estudio -- NNN still <Comp> <quadro>`), com a guia de zonas seguras ligada; um rascunho rápido se o ritmo precisar ser visto (`rascunho`). Revise você mesmo com `modelos/checklist-entrega.md` e mostre os stills principais. **Ponto de aprovação** antes do render final.
 9. **Entregar.** `npm run estudio -- NNN render <Comp> REVnn <nome>`: render em alta qualidade, finalização (-14 LUFS, pico -1 dBTP, H.264 compatível) e cópia do código. Na mesma pasta `REVnn/`: capa (composição de 1 quadro, `still`), legenda do post e roteiro de narração. Informe caminho, duração, resolução, loudness e **o que não foi conferido**.
 10. **Revisões.** Cada pedido de mudança vira a próxima revisão (`REV01`, `REV02`...). Nunca sobrescreva uma entrega.
+
+## Sites de referência
+
+Para cada linha do `sites.md`, aproveite **só o que o contexto pede**:
+
+- **Estilo** (identidade, paleta, tipografia, fotos, ritmo de animação): abra o site num navegador do ambiente (navegador embutido, Playwright ou Chrome DevTools MCP), tire capturas da página inteira e das seções citadas e salve em `2_referencias_estilo/sites/<dominio>/`. Anote as cores (HEX) e fontes que o próprio site usa, sem chutar pelo olho.
+- **Conteúdo** (textos, dados, diferenciais, endereço, contatos): leia a página como texto e salve um resumo com a URL e a data da consulta em `3_referencias_contexto/sites/<dominio>.md`. Esse resumo passa a ser fonte de dados como qualquer documento. Se um dado do site contradiz um documento, pergunte qual vale.
+- Feche abas e não aceite cookies não essenciais, não faça login nem preencha formulários. Vídeos do site não tocam. Imagens e textos de sites de terceiros servem de referência; só entram no vídeo se a pessoa confirmar que pode usá-los.
+- Site fora do ar ou que pede login: avise e peça capturas ou o texto.
 
 ## Postura de diretor
 

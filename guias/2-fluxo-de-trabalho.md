@@ -20,6 +20,9 @@ O diretor roda `npm run novo -- "Reels apartamento 502" --marca minha-imobiliari
 | `2_referencias_estilo/` | identidade visual: o kit da marca (copiado sozinho com `--marca`), logos, paletas, fontes, prints ou links de vídeos que você gosta **e** dos que não quer |
 | `3_referencias_contexto/` | PDFs, plantas, memoriais, tabelas de preço, fichas técnicas, textos, um `links.md` com sites |
 | `4_audio/` | a narração que você gerar e a música com licença (pode ficar vazia no começo) |
+| `sites.md` | os sites de referência: a URL e, em poucas palavras, o que aproveitar (estilo, conteúdo ou ambos) e o que ignorar |
+
+O diretor pergunta **para quem é o vídeo** e nunca presume uma marca: você escolhe um kit de `marcas/`, pede um kit novo ou segue sem marca.
 
 Não precisa organizar nada além disso. Nomes claros ajudam (`cozinha-dia.mp4`, `planta-tipo.pdf`), mas o diretor se vira.
 
@@ -29,12 +32,14 @@ O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de
 
 - **Instagram?** A legenda do post entra nos entregáveis.
 - **Narração gerada?** O diretor escreve o roteiro para você gerar a voz no Google AI Studio (ou onde preferir).
+- **Sites de referência?** Você manda a URL e um contexto breve de cada um, na conversa ou no `sites.md`.
 
 ## 2. Estudo do material
 
 - `npm run estudio -- NNN sondar`: inventário (`5_trabalho/inventario.md`) com duração, resolução, orientação e áudio de cada arquivo, e uma **prancha** de quadros de cada vídeo para escolher trechos sem assistir tudo.
 - Skill `watch`: o diretor "assiste" aos vídeos (quadros e transcrição) quando precisa entender movimento, fala ou detalhes.
 - Contexto: lê os PDFs e documentos (texto com `pdftotext`; plantas e páginas escaneadas como imagem, com `pdftoppm`).
+- Sites: visita cada site do `sites.md` e aproveita só o que você pediu. Capturas de estilo vão para `2_referencias_estilo/sites/`, e resumos de conteúdo, com URL e data, para `3_referencias_contexto/sites/`.
 - Saída: um resumo do que o material tem de melhor, do que tem defeito e do que **falta** ("um plano da fachada de dia faria falta no gancho").
 
 ## 3. Direção de estilo (ponto de aprovação)

@@ -3,7 +3,7 @@
 O estilo **não vem de uma lista fixa**. Em cada projeto ele nasce de três fontes, nesta ordem:
 
 1. o **kit da marca** (`2_referencias_estilo/marca/`): cores, fontes, logos, tom de voz, o que usar e o que evitar;
-2. as **referências** que você colocou em `2_referencias_estilo/` (prints, vídeos, posts, sites) e o que você disse que gosta ou não gosta nelas;
+2. as **referências** que você colocou em `2_referencias_estilo/` (prints, vídeos, posts) e os **sites** do `sites.md` marcados para estilo, com o que você disse que gosta ou não gosta em cada um;
 3. o **briefing**: finalidade, público e a sensação desejada.
 
 A galeria em [estilos/](../estilos/README.md) mostra o que o projeto original já fez. Serve para inspirar e para mostrar o que é possível, nunca como o estilo obrigatório.

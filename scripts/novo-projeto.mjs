@@ -37,6 +37,8 @@ for (const [chave, sub] of Object.entries(PASTAS)) {
 
 const briefing = fs.readFileSync(path.join(RAIZ, 'modelos', 'briefing.md'), 'utf8').replace('{{titulo}}', titulo).replace('{{numero}}', numero);
 fs.writeFileSync(path.join(pasta, 'briefing.md'), briefing);
+const sites = fs.readFileSync(path.join(RAIZ, 'modelos', 'sites.md'), 'utf8').replace('{{titulo}}', titulo).replace('{{numero}}', numero);
+fs.writeFileSync(path.join(pasta, 'sites.md'), sites);
 
 if (marca) {
   const origem = path.join(MARCAS, marca);

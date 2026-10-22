@@ -4,6 +4,10 @@ Guia do diretor para conduzir o briefing. **Uma rodada por vez**, no máximo qua
 
 Antes da primeira rodada, olhe o que já está na pasta (`1_brutos/`, `2_referencias_estilo/`, `3_referencias_contexto/`): as perguntas ficam mais precisas quando partem do material.
 
+## Rodada 0 — Para quem é (ao criar o projeto)
+
+- **Para quem é o vídeo?** Liste os kits de `marcas/` · marca nova (montar kit) · sem marca. O estúdio é genérico: **nunca presuma uma marca**, nem a usada no vídeo anterior.
+
 ## Rodada 1 — Para que serve (sempre)
 
 1. **Onde o vídeo vai ser publicado?** Instagram Reels · Instagram feed/stories · YouTube · WhatsApp · site/apresentação · outro.
@@ -11,7 +15,12 @@ Antes da primeira rodada, olhe o que já está na pasta (`1_brutos/`, `2_referen
 2. **Que tipo de vídeo é?** Montagem de vídeos brutos (sem ninguém falando) · pessoa falando para a câmera · fotos animadas · motion graphics/animação · tela/tutorial · misto.
 3. **Vai ter narração?** Gerar o roteiro para eu criar a voz no Google AI Studio (ou outra ferramenta) · já tenho o áudio · fala original do vídeo · sem narração, só música e textos.
    - Roteiro para gerar fora → `narracao.md` entra nos entregáveis e a edição espera o áudio antes de sincronizar.
-4. **Qual a duração?** Até 30 s · 30–60 s · 60–90 s · mais de 90 s.
+4. **Há sites de referência?** Sim, vou colar os links aqui · sim, já preenchi o `sites.md` · não.
+   - Sim → para cada site, peça **a URL e um contexto breve**: usar para estilo, conteúdo ou ambos; o que aproveitar; o que ignorar. Registre no `sites.md` (modelo em `modelos/sites.md`) e confirme o que entendeu em uma linha por site.
+
+## Rodada 1b — Duração (sempre)
+
+1. **Qual a duração?** Até 30 s · 30–60 s · 60–90 s · mais de 90 s.
 
 ## Rodada 2 — Mensagem
 

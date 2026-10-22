@@ -6,7 +6,8 @@ Fork de [mackswendhell/studio](https://github.com/mackswendhell/studio) (MIT), a
 
 - **qualquer tipo de vídeo:** montagem de brutos sem ninguém falando (imóveis, obras, eventos, produtos), pessoa falando, fotos animadas, motion graphics, tutorial de tela;
 - **qualquer estilo:** em cada projeto, o estilo sai da sua identidade visual e das suas referências, não de uma galeria fixa;
-- **briefing guiado:** rodadas curtas de perguntas de múltipla escolha, conforme a finalidade (Instagram → legenda do post; narração gerada → roteiro para o Google AI Studio);
+- **briefing guiado:** rodadas curtas de perguntas de múltipla escolha, conforme a finalidade (Instagram → legenda do post; narração gerada → roteiro para o Google AI Studio; sites de referência → URL e o que aproveitar de cada um);
+- **genérico:** nenhuma marca é presumida; cada vídeo escolhe o seu kit de marca, cria um novo ou segue sem marca;
 - **Claude Code e Codex:** as regras do diretor ficam em `AGENTS.md` (o `CLAUDE.md` só o importa);
 - **entrega profissional:** loudness de -14 LUFS, codificação compatível com as redes, zonas seguras de cada plataforma, revisões REVnn nunca sobrescritas;
 - **somente ferramentas gratuitas e locais:** sem serviços de IA pagos; nada sai da máquina sem você pedir.

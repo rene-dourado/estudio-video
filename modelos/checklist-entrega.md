@@ -4,7 +4,8 @@ O diretor confere cada item antes de dizer que a revisão está pronta, e inform
 
 ## Conteúdo
 
-- [ ] Todo dado (área, preço, endereço, data, nome) bate com a fonte em `3_referencias_contexto/`
+- [ ] Todo dado (área, preço, endereço, data, nome) bate com a fonte em `3_referencias_contexto/` (dados de sites: resumo com URL e data da consulta)
+- [ ] Imagens ou textos tirados de sites de terceiros só entram com autorização confirmada
 - [ ] Nada do que "não pode aparecer" aparece (preço, vaga, placas, rostos, logos sem autorização)
 - [ ] Texto da tela, narração e legenda do post dizem a mesma coisa
 - [ ] A narração gerada leu o roteiro inteiro (transcrição comparada com o `narracao.md`)

@@ -5,6 +5,7 @@
 
 ## 1. Finalidade
 
+- **Para quem (cliente / marca):** <!-- kit de marcas/ · marca nova · sem marca — nunca presumido -->
 - **Onde vai ser publicado:** <!-- Instagram Reels / feed / stories · YouTube · Shorts · TikTok · WhatsApp · site · apresentação · telão -->
 - **Objetivo:** <!-- vender · divulgar · informar · institucional · portfólio · tutorial · convite -->
 - **Público:** <!-- quem vai assistir, o que já sabe, o que precisa sentir ou fazer -->
@@ -30,6 +31,7 @@
 - **Marca:** <!-- kit em 2_referencias_estilo/marca/ · marca nova (criar kit) · sem marca -->
 - **Sensação desejada (3 palavras):** <!-- ex.: sofisticado, sereno, iluminado -->
 - **Referências de estilo:** <!-- arquivos em 2_referencias_estilo/ e o que agrada em cada um -->
+- **Sites de referência:** <!-- ver sites.md: quantos, e o resumo do que aproveitar de cada um (ou "nenhum") -->
 - **O que evitar:** <!-- ex.: transições chamativas, fontes arredondadas, cor X -->
 - **Intensidade de movimento:** <!-- sutil · equilibrada · intensa -->
 - **Textos na tela:** <!-- legenda da fala palavra a palavra · títulos por cena · rótulos discretos · nenhum -->
