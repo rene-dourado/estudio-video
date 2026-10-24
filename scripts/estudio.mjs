@@ -6,6 +6,8 @@
 //   npm run estudio -- 001 sondar                       inventário e pranchas do material bruto
 //   npm run estudio -- 001 proxy "1_brutos/IMG_0423.MOV"   cópia H.264 SDR com fps constante em 5_trabalho/midia/
 //   npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Café Aurora, cold brew"]
+//   npm run estudio -- 001 alinhar "5_trabalho/legenda.txt" "5_trabalho/transcricao/narracao/palavras.json" [--alias "orora=aurora"]
+//                                                       texto do roteiro com os tempos da voz (legenda.json + relatório)
 //   npm run estudio -- 001 studio                       pré-visualização no navegador
 //   npm run estudio -- 001 still <Composicao> <quadro> [--guia]   quadro parado em 5_trabalho/stills/ (--guia: zonas seguras)
 //   npm run estudio -- 001 rascunho <Composicao>        render rápido, meia resolução, em 5_trabalho/rascunhos/
@@ -36,7 +38,8 @@ const rodar = (exe, args, env = {}) => {
 };
 
 const remotion = (args, publico) => rodar(process.execPath, [remotionCli(), ...args], publico ? {ESTUDIO_PUBLICO: publico} : {});
-const python = (script, args) => rodar(PYTHON, [path.join(RAIZ, 'tools', script), ...args]);
+// UTF-8 na saída: sem isso, o console do Windows embaralha os acentos das mensagens.
+const python = (script, args) => rodar(PYTHON, [path.join(RAIZ, 'tools', script), ...args], {PYTHONIOENCODING: 'utf-8'});
 
 // Cada src/videos/<NNN-slug>/index.tsx exporta `Composicoes`. O registro junta todos num <Folder> por vídeo.
 const registrar = () => {
@@ -166,6 +169,16 @@ if (!alvo || alvo === 'ajuda') {
       const fonte = path.resolve(proj.pasta, arquivo);
       const saida = em('trabalho', 'transcricao', path.parse(fonte).name);
       python('transcrever.py', [fonte, saida, ...opcoes]);
+      break;
+    }
+    case 'alinhar': {
+      // Grava <stem do texto>.json ao lado do palavras.json (5_trabalho/transcricao/, que já vai para a pasta pública).
+      const [texto, palavras, ...opcoes] = resto;
+      if (!texto || !palavras) throw new Error('Uso: alinhar "<texto.txt>" "<.../palavras.json>" [--alias "orora=aurora, 8=oito"]');
+      const fonte = path.resolve(proj.pasta, palavras);
+      const saida = path.join(path.dirname(fonte), `${path.parse(texto).name}.json`);
+      if (path.resolve(saida) === fonte) throw new Error('O texto não pode se chamar palavras.txt: a saída sobrescreveria a transcrição.');
+      python('alinhar.py', [path.resolve(proj.pasta, texto), fonte, saida, ...opcoes]);
       break;
     }
     case 'studio':

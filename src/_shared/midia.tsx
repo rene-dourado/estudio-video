@@ -76,6 +76,17 @@ export const Clipe: React.FC<{
   );
 };
 
+// Imagem ou conteúdo pronto. As peças que aceitam `Midia` (Cortina, Colagem, Empilhado) tratam um texto
+// como caminho de foto ('1_brutos/sala.jpg') e qualquer outro nó (<Clipe>, <FotoMovimento>, um painel) como está.
+export type Midia = string | React.ReactNode;
+
+export const Preencher: React.FC<{midia: Midia; filtro?: string; posicao?: string}> = ({midia, filtro, posicao}) =>
+  typeof midia === 'string' ? (
+    <Img src={staticFile(midia)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: posicao, filter: filtro}} />
+  ) : (
+    <AbsoluteFill style={{filter: filtro}}>{midia}</AbsoluteFill>
+  );
+
 // Segundos → quadros, arredondado. Use para montar a timeline a partir do palavras.json.
 export const useQuadros = () => {
   const {fps} = useVideoConfig();

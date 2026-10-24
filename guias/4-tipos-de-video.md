@@ -23,6 +23,18 @@ O estúdio não supõe um tipo só. O briefing define o tipo, e cada tipo muda o
 6. **Cor.** Se os clipes vêm de aparelhos diferentes, uniformize com um `filtro` CSS leve (brilho, contraste, saturação, temperatura) e confira nos stills lado a lado.
 7. **Qualidade do bruto.** Clipe com resolução baixa? Avise antes. Upscale e estabilização são possíveis com ferramentas externas (ex.: Real-ESRGAN, FFmpeg vidstab), sempre gerando cópias em `5_trabalho/`, nunca alterando o original, e só com a sua aprovação para instalar.
 
+### Peças prontas para montagem (`src/_shared/`)
+
+Vieram dos Reels feitos antes do motor; a vitrine está em `src/videos/_exemplo/pecas.tsx`.
+
+- **`<Cenas>`** (`transicoes.tsx`): cenas com tempos em segundos tirados da fala e transições curtas (0,3 s) `whip`, `slide`, `zoom` ou `fade`, mais um `flash` opcional. Cada cena começa na palavra; a anterior continua por baixo durante a transição, então a duração não muda.
+- **`<SplitVideo>`** (`split.tsx`): vídeo **horizontal** num vertical em dois recortes empilhados (1080x960 cada), com uma linha na cor da marca. Melhor que um recorte estreito: mostra quase a altura inteira do original. `foco.x` 0 e 1 pegam as bordas esquerda e direita; `foco.y` 1 esconde um selo no topo. `<Empilhado>` faz o mesmo com fotos ou painéis. A transição `slide` casa com ela.
+- **`<Cortina>`** (`antes-depois.tsx`): antes e depois com o mesmo enquadramento; com `progresso={0.5}` vira a capa dividida. O "depois" gerado leva `<Aviso texto="Imagem ilustrativa · decoração sugerida" />`.
+- **`<Colagem>`, `<Etiqueta>`, `<Faixas>`** (`colagem.tsx`): quadros de papel, etiqueta de máquina de escrever e faixas empilhadas que entram quando cada item é dito (listas de lazer, diferenciais).
+- **`<Rotulo>`, `<Aviso>`, `<Escurecer>`, `<Ondas>`** (`textos.tsx`).
+- **Legenda:** use o `legenda.json` do `alinhar` (texto do roteiro, grafia certa) e passe `cortes={cortesDe(cenas)}` à `LegendaFala`, para um bloco nunca juntar o fim de uma cena com o começo da seguinte.
+- **Capa:** uma composição de 1 quadro desliga sozinha as animações de entrada dessas peças (`entrada.tsx`); para forçar num trecho maior, envolva em `<SemEntrada>`. Animações próprias do vídeo devem usar `useEntrada()` para ganhar o mesmo comportamento.
+
 ### Erros comuns (e como evitar)
 
 - Rótulo e imagem precisam bater: um rótulo "Fechadura digital" sobre uma parede lisa, ou "Sabor morango" sobre o pote de baunilha, reprova o quadro.

@@ -2,11 +2,13 @@ import React from 'react';
 import {AbsoluteFill, Composition, Easing, Sequence, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {LegendaFala, type Palavra} from '../../_shared/legendas';
 import {GuiaZonas} from '../../_shared/zonas-seguras';
+import {CapaExemplo, PECAS_DURACAO, PecasExemplo} from './pecas';
 
 // Exemplo mínimo de um vídeo do estúdio, sem nenhum arquivo externo: três cenas, título por cena,
 // legenda sincronizada e guia de zonas seguras. Um vídeo real troca os painéis por <Clipe>/<FotoMovimento>
 // (src/_shared/midia.tsx), lê o palavras.json da narração e o kit de marca (src/_shared/marca.ts).
 // Cada pasta src/videos/<NNN-slug>/ exporta `Composicoes`; o scripts/estudio.mjs registra todas.
+// As peças de montagem (transições, tela dividida, antes e depois, colagem, capa) estão em pecas.tsx.
 
 const FPS = 30;
 const COR = {fundo: '#14181C', texto: '#FFFFFF', destaque: '#E0B04A'};
@@ -62,6 +64,11 @@ const ReelsExemplo: React.FC<{guiaZonas: boolean}> = ({guiaZonas}) => {
 };
 
 export const Composicoes: React.FC = () => (
-  <Composition id="ReelsExemplo" component={ReelsExemplo} width={1080} height={1920} fps={FPS} durationInFrames={8 * FPS}
-    defaultProps={{guiaZonas: false}} />
+  <>
+    <Composition id="ReelsExemplo" component={ReelsExemplo} width={1080} height={1920} fps={FPS} durationInFrames={8 * FPS}
+      defaultProps={{guiaZonas: false}} />
+    <Composition id="PecasExemplo" component={PecasExemplo} width={1080} height={1920} fps={FPS} durationInFrames={PECAS_DURACAO * FPS}
+      defaultProps={{guiaZonas: false}} />
+    <Composition id="CapaExemplo" component={CapaExemplo} width={1080} height={1920} fps={FPS} durationInFrames={1} />
+  </>
 );

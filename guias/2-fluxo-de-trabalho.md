@@ -65,12 +65,21 @@ npm run estudio -- NNN transcrever "4_audio/narracao.wav" --prompt "Café Aurora
 
 Gera `palavras.json` (início e fim de cada palavra), `transcript.md` e `legenda.srt` em `5_trabalho/transcricao/`. O `--prompt` com nomes próprios evita erros de grafia. O diretor compara com o roteiro: se a voz pulou ou trocou algo, o texto da tela segue o que foi **dito**, e ele avisa você.
 
+Para a legenda, o diretor alinha o **texto do roteiro** à transcrição, em vez de mostrar o que o Whisper escreveu:
+
+```text
+npm run estudio -- NNN alinhar "5_trabalho/legenda.txt" "5_trabalho/transcricao/narracao/palavras.json" --alias "orora=aurora, coudbru=cold brew"
+```
+
+O `legenda.txt` é o texto como deve aparecer na tela; `[nome]` colado antes de uma palavra marca uma âncora de corte (`[rua]Rua das Flores`). Sai `legenda.json` (mesmo formato do `palavras.json`, com a grafia certa) e `legenda.md`, o relatório de cada trecho em que a voz diverge do texto. Grafia diferente vira `--alias`; palavra pulada ou trocada se corrige no texto ou na voz.
+
 ## 7. Programação
 
 - Código em `src/videos/<NNN>-<slug>/index.tsx`, exportando `Composicoes` (o vídeo, a capa, versões).
-- Peças prontas em `src/_shared/`: `Clipe` e `FotoMovimento` (material bruto com movimento suave), `LegendaFala` e `quando()` (legenda e cortes ancorados nas palavras), `useMarca` (cores, fontes e logos do kit), `GuiaZonas` (zonas seguras), `synchronized-split` e `enquadrarRosto` (pessoa falando).
+- Peças prontas em `src/_shared/`: `Clipe` e `FotoMovimento` (material bruto com movimento suave), `LegendaFala`, `quando()` e `ancora()` (legenda e cortes ancorados nas palavras), `Cenas` e as transições whip, slide e zoom (`transicoes.tsx`), `SplitVideo` (vídeo horizontal em dois recortes), `Cortina` (antes e depois), `Colagem`, `Etiqueta` e `Faixas`, `Rotulo`, `Aviso` e `Ondas`, `useMarca` (cores, fontes e logos do kit), `GuiaZonas` (zonas seguras), `synchronized-split` e `enquadrarRosto` (pessoa falando).
 - Qualquer estilo: o Remotion desenha tudo o que uma página web desenha, e mais vídeo. Para 3D, mapas ou efeitos especiais, o diretor propõe o pacote do Remotion e pede a sua aprovação antes de instalar.
-- Toda animação depende de `useCurrentFrame()`, sem animação CSS. Use `<Sequence premountFor={fps}>` nas cenas com tempo.
+- Toda animação depende de `useCurrentFrame()`, sem animação CSS. Use `<Sequence premountFor={fps}>` nas cenas com tempo, ou `<Cenas>`, que já faz isso.
+- A vitrine das peças de montagem, com a capa, está em `src/videos/_exemplo/pecas.tsx` (composições `PecasExemplo` e `CapaExemplo`).
 
 ## 8. Conferência (ponto de aprovação)
 

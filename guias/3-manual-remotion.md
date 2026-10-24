@@ -89,6 +89,7 @@ Tudo abaixo é possível sem nenhum custo, em qualquer estilo. Peça com as suas
 
 ### Transições
 - Corte seco, fade, wipe (cortina), deslize.
+- Prontas no estúdio: chicote (whip, com desfoque de movimento), deslize em duas metades (slide), zoom e clarão (flash), todas curtas (0,3 s) e sem mudar a duração do vídeo.
 - Transformações: a câmera encolhe e vira card, um elemento cresce e vira tela cheia.
 
 ### Formatos

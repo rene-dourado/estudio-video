@@ -47,8 +47,8 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
 3. **Direção de estilo.** A partir das referências, proponha duas ou três direções concretas (paleta em HEX, fontes, linguagem de movimento, transições, textura, textos na tela). Se ajudar, mostre um still de teste de cada. Guia: `guias/6-identidade-visual.md`.
 4. **Roteiro de narração** (se houver): escreva `6_entregas/REVnn/narracao.md`, com tempo-alvo por bloco casado com as cenas. Espere o áudio.
 5. **Plano de edição** (`plano.md`, modelo em `modelos/plano.md`). **Ponto de aprovação:** nada é programado antes do OK.
-6. **Transcrever** a narração ou a fala: `npm run estudio -- NNN transcrever "4_audio/<arquivo>" --prompt "<nomes próprios>"`. Compare a transcrição com o roteiro: vozes sintéticas pulam palavras. O texto na tela segue o que a voz **realmente** diz.
-7. **Programar** em `src/videos/<NNN>-<slug>/`, com as peças de `src/_shared/` e a skill `remotion-best-practices`. Todo corte e todo texto ancorado nas palavras (`quando()` em `legendas.tsx`).
+6. **Transcrever** a narração ou a fala: `npm run estudio -- NNN transcrever "4_audio/<arquivo>" --prompt "<nomes próprios>"`. Compare a transcrição com o roteiro: vozes sintéticas pulam palavras. O texto na tela segue o que a voz **realmente** diz. Para a legenda, alinhe o texto do roteiro à transcrição com `npm run estudio -- NNN alinhar "<texto.txt>" "<.../palavras.json>" --alias "<grafia do Whisper>=<certa>"` e leia o relatório `.md` de divergências.
+7. **Programar** em `src/videos/<NNN>-<slug>/`, com as peças de `src/_shared/` e a skill `remotion-best-practices`. Todo corte e todo texto ancorado nas palavras (`quando()` ou `ancora()` em `legendas.tsx`). Antes de escrever uma peça, veja se ela já existe no `_shared` (vitrine em `src/videos/_exemplo/pecas.tsx`); o que um vídeo inventar e puder servir a outros sobe para o `_shared`. Na capa (1 quadro), use as peças do `_shared` ou `useEntrada()`: animação de entrada própria deixa o texto invisível no quadro 0.
 8. **Conferir.** `npm run typecheck`; stills de todas as cenas e do meio das transições com a guia de zonas seguras (`npm run estudio -- NNN still <Comp> <quadro> --guia`; toda composição de vídeo aceita a prop `guiaZonas` e desenha `<GuiaZonas>`); com HDR, compare um still com o quadro visto no celular; um rascunho rápido se o ritmo precisar ser visto (`rascunho`). Revise você mesmo com `modelos/checklist-entrega.md` e mostre os stills principais. **Ponto de aprovação** antes do render final.
 9. **Entregar.** `npm run estudio -- NNN render <Comp> REVnn <nome>`: render em alta qualidade, finalização (-14 LUFS, pico -1 dBTP, H.264 compatível) e cópia do código. Na mesma pasta `REVnn/`: capa (uma composição de 1 quadro, gerada com `npm run estudio -- NNN capa <Comp> REVnn`), legenda do post e roteiro de narração. Informe caminho, duração, resolução, loudness e **o que não foi conferido**.
 10. **Revisões.** Cada pedido de mudança vira a próxima revisão (`REV01`, `REV02`...). Nunca sobrescreva uma entrega.
@@ -109,13 +109,17 @@ guias/                    1 primeiros passos · 2 fluxo · 3 manual do Remotion 
                           5 direção editorial · 6 identidade visual · 7 som e entrega
 modelos/                  perguntas e briefing · plano · narração · legenda do Instagram · checklist · marca-exemplo
 estilos/                  galeria do projeto original (inspiração, não regra)
-scripts/estudio.mjs       comando único: projetos, sondar, proxy, transcrever, studio, still, rascunho, render, capa, finalizar, medir
+scripts/estudio.mjs       comando único: projetos, sondar, proxy, transcrever, alinhar, studio, still, rascunho, render, capa, finalizar, medir
 scripts/novo-projeto.mjs  cria a pasta de um vídeo novo
-src/_shared/              midia.tsx (Clipe, FotoMovimento) · legendas.tsx (LegendaFala, quando) · marca.ts (useMarca)
-                          zonas-seguras.tsx · synchronized-split.tsx e enquadramento.ts (pessoa falando)
+src/_shared/              midia.tsx (Clipe, FotoMovimento) · legendas.tsx (LegendaFala, quando, ancora) · marca.ts (useMarca)
+                          transicoes.tsx (Cenas: whip, slide, zoom, fade, flash) · split.tsx (SplitVideo, Empilhado)
+                          antes-depois.tsx (Cortina) · colagem.tsx (Colagem, Etiqueta, Faixas) · textos.tsx (Rotulo, Aviso, Escurecer, Ondas)
+                          entrada.tsx (useEntrada, Sobe, SemEntrada: capa sem animação) · zonas-seguras.tsx
+                          synchronized-split.tsx e enquadramento.ts (pessoa falando)
 src/estilos/              código da galeria
 src/videos/<NNN-slug>/    código de cada vídeo (fora do Git)
-tools/                    transcrever.py (faster-whisper) · sondar.py (inventário) · proxy.py (cópia H.264 SDR, fps constante)
+tools/                    transcrever.py (faster-whisper) · alinhar.py (texto do roteiro com os tempos da voz) · sondar.py (inventário)
+                          proxy.py (cópia H.264 SDR, fps constante)
                           finalizar.py (loudness e codificação)
 ```
 
