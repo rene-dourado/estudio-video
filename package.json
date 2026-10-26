@@ -12,15 +12,15 @@
     "typecheck": "node scripts/estudio.mjs registrar && tsc --noEmit && node scripts/check-split-layouts.mjs"
   },
   "dependencies": {
-    "@remotion/cli": "4.0.451",
-    "@remotion/fonts": "4.0.451",
-    "@remotion/google-fonts": "4.0.451",
-    "@remotion/media": "4.0.451",
-    "@remotion/media-utils": "4.0.451",
-    "@remotion/transitions": "4.0.451",
+    "@remotion/cli": "4.0.539",
+    "@remotion/fonts": "4.0.539",
+    "@remotion/google-fonts": "4.0.539",
+    "@remotion/media": "4.0.539",
+    "@remotion/media-utils": "4.0.539",
+    "@remotion/transitions": "4.0.539",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "remotion": "4.0.451"
+    "remotion": "4.0.539"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
