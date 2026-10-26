@@ -40,6 +40,7 @@ O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de
 
 - `npm run estudio -- NNN sondar`: inventário (`5_trabalho/inventario.md`) com duração, resolução, orientação e áudio de cada arquivo, e uma **prancha** de quadros de cada vídeo para escolher trechos sem assistir tudo. Ele avisa quando um clipe de celular é HDR ou tem taxa de quadros variável.
 - `npm run estudio -- NNN proxy "1_brutos/<arquivo>"`: cópia de trabalho em H.264, SDR, com fps constante e rotação aplicada, em `5_trabalho/midia/`. Use para clipes HDR, com taxa variável ou muito pesados. O bruto não muda.
+- `npm run estudio -- NNN lento "1_brutos/<clipe>" --inicio 12.5 --duracao 3 [--fator 2]`: câmera lenta de um trecho, com os quadros intermediários criados pelo RIFE (placa de vídeo), em `5_trabalho/midia/<nome>-<início>s-lento2x.mp4`. Converte HDR e rotação como o `proxy`. ~20 s para 3 s de vertical em 2x.
 - `npm run estudio -- NNN profundidade "1_brutos/<foto ou pasta>"`: mapa de profundidade de cada foto em `5_trabalho/midia/profundidade/`, para a peça `Foto3D` (movimento de câmera em 3D). Local, ~1 s por foto; não refaz mapas prontos (`--refazer` força). A foto não muda.
 - Skill `watch`: o diretor "assiste" aos vídeos (quadros e transcrição) quando precisa entender movimento, fala ou detalhes.
 - Contexto: lê os PDFs e documentos (texto com `pdftotext`; plantas e páginas escaneadas como imagem, com `pdftoppm`).

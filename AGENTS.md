@@ -43,7 +43,7 @@ O código de cada vídeo fica em `src/videos/<NNN>-<slug>/index.tsx` (fora do Gi
    - **Vai ter narração gerada?** Se sim, você escreve o **roteiro de narração** (`modelos/narracao.md`) para a pessoa gerar a voz no Google AI Studio ou na ferramenta que preferir, e a edição se sincroniza com o áudio que ela devolver em `4_audio/`.
    - **Há sites de referência?** Se sim, peça a URL e um contexto breve de cada um: o que aproveitar (identidade visual, textos e dados, fotos, ritmo, estrutura) e o que ignorar. A pessoa pode responder na conversa ou preencher o `sites.md` da pasta; você registra tudo no `sites.md`.
    - O briefing **termina com um resumo do que você entendeu**, as pendências de material e a pergunta "posso seguir?". Só depois disso o trabalho avança.
-2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos). Se ele marcar um clipe com taxa variável ou HDR, gere uma cópia de trabalho com `npm run estudio -- NNN proxy "1_brutos/<arquivo>"` e use a cópia no código; para fotos que vão ganhar movimento 3D (`<Foto3D>`), gere os mapas com `npm run estudio -- NNN profundidade "1_brutos/<foto ou pasta>"`; skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
+2. **Estudar o material.** `npm run estudio -- NNN sondar` (inventário e pranchas dos brutos). Se ele marcar um clipe com taxa variável ou HDR, gere uma cópia de trabalho com `npm run estudio -- NNN proxy "1_brutos/<arquivo>"` e use a cópia no código; para um plano em câmera lenta, gere a cópia com `npm run estudio -- NNN lento "1_brutos/<clipe>" --inicio <s> --duracao <s>` (RIFE; nunca `velocidade` abaixo de 1, que anda aos saltos); para fotos que vão ganhar movimento 3D (`<Foto3D>`), gere os mapas com `npm run estudio -- NNN profundidade "1_brutos/<foto ou pasta>"`; skill `watch` para assistir aos vídeos (só o motor local; nada sai da máquina sem a pessoa pedir); leia os PDFs e documentos de `3_referencias_contexto/` (com o Poppler: `pdftotext`, ou `pdftoppm` para páginas escaneadas e plantas); olhe todas as referências de estilo; visite cada site do `sites.md` (ver *Sites de referência*, abaixo). Diga **exatamente** o que falta e por quê.
 3. **Direção de estilo.** A partir das referências, proponha duas ou três direções concretas (paleta em HEX, fontes, linguagem de movimento, transições, textura, textos na tela). Se ajudar, mostre um still de teste de cada. Guia: `guias/6-identidade-visual.md`.
 4. **Roteiro de narração** (se houver): escreva `6_entregas/REVnn/narracao.md`, com tempo-alvo por bloco casado com as cenas. Espere o áudio.
 5. **Plano de edição** (`plano.md`, modelo em `modelos/plano.md`). **Ponto de aprovação:** nada é programado antes do OK.
@@ -109,7 +109,7 @@ guias/                    1 primeiros passos · 2 fluxo · 3 manual do Remotion 
                           5 direção editorial · 6 identidade visual · 7 som e entrega
 modelos/                  perguntas e briefing · plano · narração · legenda do Instagram · checklist · marca-exemplo
 estilos/                  galeria do projeto original (inspiração, não regra)
-scripts/estudio.mjs       comando único: projetos, sondar, proxy, profundidade, transcrever, alinhar, studio, still, rascunho, render, capa, finalizar, medir
+scripts/estudio.mjs       comando único: projetos, sondar, proxy, lento, profundidade, transcrever, alinhar, studio, still, rascunho, render, capa, finalizar, medir
 scripts/novo-projeto.mjs  cria a pasta de um vídeo novo
 src/_shared/              midia.tsx (Clipe, FotoMovimento) · foto3d.tsx (Foto3D) · legendas.tsx (LegendaFala, quando, ancora) · marca.ts (useMarca)
                           transicoes.tsx (Cenas: whip, slide, zoom, fade, flash) · split.tsx (SplitVideo, Empilhado)
@@ -120,6 +120,7 @@ src/estilos/              código da galeria
 src/videos/<NNN-slug>/    código de cada vídeo (fora do Git)
 tools/                    transcrever.py (faster-whisper) · alinhar.py (texto do roteiro com os tempos da voz) · sondar.py (inventário)
                           proxy.py (cópia H.264 SDR, fps constante) · profundidade.py (mapa de profundidade para a Foto3D)
+                          lento.py (câmera lenta com quadros do RIFE)
                           finalizar.py (loudness e codificação)
 ```
 

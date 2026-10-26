@@ -29,6 +29,20 @@ def sondar(arquivo):
     return next((s for s in streams if s.get("codec_type") == "video"), None), any(s.get("codec_type") == "audio" for s in streams)
 
 
+def filtros_sdr(v, altura=0):
+    """Filtros que deixam o vídeo pronto para o Remotion (também usados pelo lento.py). Devolve (filtros, hdr)."""
+    filtros = []
+    hdr = v.get("color_transfer") in HDR
+    if hdr:
+        # HDR -> SDR (BT.709) com tone mapping Hable, o mesmo caminho usado em pós-produção com FFmpeg.
+        filtros += ["zscale=t=linear:npl=100", "format=gbrpf32le", "zscale=p=bt709", "tonemap=hable:desat=0",
+                    "zscale=t=bt709:m=bt709:r=tv"]
+    if altura:
+        filtros.append(f"scale='if(gt(iw,ih),{altura},-2)':'if(gt(iw,ih),-2,{altura})'")
+    filtros.append("format=yuv420p")
+    return filtros, hdr
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("projeto", type=Path)
@@ -50,15 +64,7 @@ def main():
     v, tem_audio = sondar(fonte)
     if not v:
         sys.exit("O arquivo não tem vídeo.")
-    filtros = []
-    hdr = v.get("color_transfer") in HDR
-    if hdr:
-        # HDR -> SDR (BT.709) com tone mapping Hable, o mesmo caminho usado em pós-produção com FFmpeg.
-        filtros += ["zscale=t=linear:npl=100", "format=gbrpf32le", "zscale=p=bt709", "tonemap=hable:desat=0",
-                    "zscale=t=bt709:m=bt709:r=tv"]
-    if a.altura:
-        filtros.append(f"scale='if(gt(iw,ih),{a.altura},-2)':'if(gt(iw,ih),-2,{a.altura})'")
-    filtros.append("format=yuv420p")
+    filtros, hdr = filtros_sdr(v, a.altura)
 
     # A rotação dos metadados é aplicada pelo FFmpeg na decodificação (autorotate), e a cópia sai já em pé.
     cmd = ["ffmpeg", "-hide_banner", "-v", "error", "-stats", "-i", str(fonte), "-vf", ",".join(filtros),

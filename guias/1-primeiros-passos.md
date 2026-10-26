@@ -15,6 +15,7 @@ Do zero até o primeiro vídeo. Leva uns 20 minutos, a maior parte esperando ins
 | **yt-dlp** e **Deno** | a `watch` assistir a vídeos de links (YouTube etc.) | para links |
 | **Poppler** | ler PDFs de contexto (plantas, memoriais) | recomendado |
 | **Git** | baixar e atualizar este repositório | recomendado |
+| **rife-ncnn-vulkan** | câmera lenta suave (comando `lento`) | não (instalação manual, abaixo) |
 | Placa NVIDIA | transcrição muitas vezes mais rápida | não |
 
 Funciona no Claude Desktop (aba Code), no Claude Code do terminal ou do VS Code, e no Codex (app ou terminal). A skill `watch` **não funciona no chat comum** do Claude: use sempre uma sessão Code.
@@ -36,6 +37,8 @@ winget install --id Git.Git --exact
 ```
 
 Feche e abra o PowerShell e confira: `node --version`, `python --version`, `ffmpeg -version`.
+
+**Câmera lenta (opcional).** Baixe o `windows.zip` do release mais recente de [TNTwise/rife-ncnn-vulkan](https://github.com/TNTwise/rife-ncnn-vulkan/releases) (MIT; ~800 MB, quase tudo modelos antigos). Guarde só o `rife-ncnn-vulkan.exe`, a `vcomp140.dll` e a pasta `rife-v4.25` em `~/.cache/estudio-video/rife-ncnn-vulkan/` (18 MB) ou noutra pasta apontada por `"rife"` no `estudio.local.json`. Roda na placa de vídeo pelo Vulkan, sem Python.
 
 ### macOS
 
