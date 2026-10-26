@@ -37,7 +37,7 @@ Clone **fora** do OneDrive, iCloud ou Dropbox. Os seus vídeos podem ficar numa 
 ### Instalação (instruções para o agente)
 
 1. Clone na pasta indicada (padrão: `C:\Estudio-video`; nunca dentro de pasta sincronizada).
-2. Rode `npm run instalar`. Ele instala as dependências do Remotion, cria um ambiente Python só para a transcrição (fora do repositório), instala o `faster-whisper` (e as bibliotecas CUDA, se houver NVIDIA), as skills do Remotion para Claude Code e Codex, e a skill `watch` no Claude Code. Também cria o `estudio.local.json`.
+2. Rode `npm run instalar`. Ele instala as dependências do Remotion, cria um ambiente Python só para a transcrição (fora do repositório), instala o `faster-whisper` (e as bibliotecas CUDA, se houver NVIDIA), baixa o modelo de profundidade da peça `Foto3D` (Depth Anything V2 Small, 99 MB), as skills do Remotion para Claude Code e Codex, e a skill `watch` no Claude Code. Também cria o `estudio.local.json`.
 3. Se faltarem `node`, `python`, `ffmpeg` ou `yt-dlp`, instale-os pelo gerenciador do sistema (comandos no guia 1) e rode `npm run instalar` de novo.
 4. No Codex, a `watch` entra como skill: copie `skills/watch` do repositório [bradautomates/claude-video](https://github.com/bradautomates/claude-video) para `~/.agents/skills/watch`.
 5. Termine dizendo à pessoa para abrir uma **sessão nova** (skills novas só aparecem nela).

@@ -40,6 +40,7 @@ O diretor olha o que já está nas pastas e faz **rodadas curtas de perguntas de
 
 - `npm run estudio -- NNN sondar`: inventário (`5_trabalho/inventario.md`) com duração, resolução, orientação e áudio de cada arquivo, e uma **prancha** de quadros de cada vídeo para escolher trechos sem assistir tudo. Ele avisa quando um clipe de celular é HDR ou tem taxa de quadros variável.
 - `npm run estudio -- NNN proxy "1_brutos/<arquivo>"`: cópia de trabalho em H.264, SDR, com fps constante e rotação aplicada, em `5_trabalho/midia/`. Use para clipes HDR, com taxa variável ou muito pesados. O bruto não muda.
+- `npm run estudio -- NNN profundidade "1_brutos/<foto ou pasta>"`: mapa de profundidade de cada foto em `5_trabalho/midia/profundidade/`, para a peça `Foto3D` (movimento de câmera em 3D). Local, ~1 s por foto; não refaz mapas prontos (`--refazer` força). A foto não muda.
 - Skill `watch`: o diretor "assiste" aos vídeos (quadros e transcrição) quando precisa entender movimento, fala ou detalhes.
 - Contexto: lê os PDFs e documentos (texto com `pdftotext`; plantas e páginas escaneadas como imagem, com `pdftoppm`).
 - Sites: visita cada site do `sites.md` e aproveita só o que você pediu. Capturas de estilo vão para `2_referencias_estilo/sites/`, e resumos de conteúdo, com URL e data, para `3_referencias_contexto/sites/`.
@@ -76,7 +77,7 @@ O `legenda.txt` é o texto como deve aparecer na tela; `[nome]` colado antes de 
 ## 7. Programação
 
 - Código em `src/videos/<NNN>-<slug>/index.tsx`, exportando `Composicoes` (o vídeo, a capa, versões).
-- Peças prontas em `src/_shared/`: `Clipe` e `FotoMovimento` (material bruto com movimento suave), `LegendaFala`, `quando()` e `ancora()` (legenda e cortes ancorados nas palavras), `Cenas` e as transições whip, slide e zoom (`transicoes.tsx`), `SplitVideo` (vídeo horizontal em dois recortes), `Cortina` (antes e depois), `Colagem`, `Etiqueta` e `Faixas`, `Rotulo`, `Aviso` e `Ondas`, `useMarca` (cores, fontes e logos do kit), `GuiaZonas` (zonas seguras), `synchronized-split` e `enquadrarRosto` (pessoa falando).
+- Peças prontas em `src/_shared/`: `Clipe` e `FotoMovimento` (material bruto com movimento suave), `Foto3D` (foto com movimento de câmera em 3D), `LegendaFala`, `quando()` e `ancora()` (legenda e cortes ancorados nas palavras), `Cenas` e as transições whip, slide e zoom (`transicoes.tsx`), `SplitVideo` (vídeo horizontal em dois recortes), `Cortina` (antes e depois), `Colagem`, `Etiqueta` e `Faixas`, `Rotulo`, `Aviso` e `Ondas`, `useMarca` (cores, fontes e logos do kit), `GuiaZonas` (zonas seguras), `synchronized-split` e `enquadrarRosto` (pessoa falando).
 - Qualquer estilo: o Remotion desenha tudo o que uma página web desenha, e mais vídeo. Para 3D, mapas ou efeitos especiais, o diretor propõe o pacote do Remotion e pede a sua aprovação antes de instalar.
 - Toda animação depende de `useCurrentFrame()`, sem animação CSS. Use `<Sequence premountFor={fps}>` nas cenas com tempo, ou `<Cenas>`, que já faz isso.
 - A vitrine das peças de montagem, com a capa, está em `src/videos/_exemplo/pecas.tsx` (composições `PecasExemplo` e `CapaExemplo`).

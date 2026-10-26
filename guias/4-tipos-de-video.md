@@ -17,7 +17,7 @@ O estúdio não supõe um tipo só. O briefing define o tipo, e cada tipo muda o
 
 1. **Inventário e pranchas** (`sondar`): saber o que existe, a orientação de cada clipe (vertical ou horizontal) e onde estão os bons momentos. Clipes de celular marcados como **HDR** ou com **taxa variável** ganham uma cópia de trabalho (`proxy`) em `5_trabalho/midia/`, que é a usada no código.
 2. **Escolha dos trechos.** Para cada cena do plano: arquivo, início e duração. Prefira trechos estáveis, com movimento contínuo, sem pessoas, placas ou reflexos indesejados. Anote no plano o porquê de cada escolha quando houver alternativa.
-3. **Movimento.** `Clipe` e `FotoMovimento` aplicam um zoom lento (padrão 1,00 → 1,04–1,06) que dá vida e esconde pequenos tremores. `velocidade` abaixo de 1 alonga clipes curtos. `foco` escolhe o que fica no quadro quando um horizontal vira vertical.
+3. **Movimento.** `Clipe` e `FotoMovimento` aplicam um zoom lento (padrão 1,00 → 1,04–1,06) que dá vida e esconde pequenos tremores. `velocidade` abaixo de 1 alonga clipes curtos. `foco` escolhe o que fica no quadro quando um horizontal vira vertical. Em fotos, a `Foto3D` dá um movimento de câmera em 3D (ver abaixo).
 4. **Ritmo.** Com narração, cada corte cai numa palavra (`quando(palavras, 'cozinha')`). Sem narração, os cortes seguem o tempo da música; 2 a 4 s por plano é um bom ponto de partida para Reels.
 5. **Textos.** Títulos por cena (ambiente, etapa, produto), rótulos de diferenciais, dados confirmados no contexto, tela final com contato e CTA. A legenda da fala pode ficar só onde não há título (assim a tela não fica poluída).
 6. **Cor.** Se os clipes vêm de aparelhos diferentes, uniformize com um `filtro` CSS leve (brilho, contraste, saturação, temperatura) e confira nos stills lado a lado.
@@ -32,6 +32,7 @@ Vieram dos Reels feitos antes do motor; a vitrine está em `src/videos/_exemplo/
 - **`<Cortina>`** (`antes-depois.tsx`): antes e depois com o mesmo enquadramento; com `progresso={0.5}` vira a capa dividida. O "depois" gerado leva `<Aviso texto="Imagem ilustrativa · decoração sugerida" />`.
 - **`<Colagem>`, `<Etiqueta>`, `<Faixas>`** (`colagem.tsx`): quadros de papel, etiqueta de máquina de escrever e faixas empilhadas que entram quando cada item é dito (listas de lazer, diferenciais).
 - **`<Rotulo>`, `<Aviso>`, `<Escurecer>`, `<Ondas>`** (`textos.tsx`).
+- **`<Foto3D>`** (`foto3d.tsx`): foto com movimento de câmera em 3D (parallax): o que está perto se desloca mais que o fundo. Antes, gere o mapa com `npm run estudio -- NNN profundidade "1_brutos/<foto ou pasta>"` (Depth Anything V2 Small, local, ~1 s por foto). Mesmas propriedades da `FotoMovimento`, mais `intensidade` (padrão 0,035 da largura; acima de ~0,05 os contornos próximos começam a esticar) e `direcao` (`{x: 1, y: 0.2}` = câmera andando para a direita). Funciona melhor com janela e vista ou com móveis à frente da parede; em unidade vazia e foto aérea o efeito fica fraco, e a `FotoMovimento` basta. Sem o mapa, cai sozinha para a `FotoMovimento`.
 - **Legenda:** use o `legenda.json` do `alinhar` (texto do roteiro, grafia certa) e passe `cortes={cortesDe(cenas)}` à `LegendaFala`, para um bloco nunca juntar o fim de uma cena com o começo da seguinte.
 - **Capa:** uma composição de 1 quadro desliga sozinha as animações de entrada dessas peças (`entrada.tsx`); para forçar num trecho maior, envolva em `<SemEntrada>`. Animações próprias do vídeo devem usar `useEntrada()` para ganhar o mesmo comportamento.
 
@@ -45,7 +46,7 @@ Vieram dos Reels feitos antes do motor; a vitrine está em `src/videos/_exemplo/
 
 ## Fotos animadas
 
-Mesmo fluxo da montagem, com `FotoMovimento`. Varie a direção do movimento (aproximar, afastar, deslizar) para não ficar repetitivo. Render ou perspectiva leva "Imagem ilustrativa" fixo no quadro.
+Mesmo fluxo da montagem, com `FotoMovimento` ou `Foto3D` (ambientes com janela, vista ou móveis). Varie a direção do movimento (aproximar, afastar, deslizar) para não ficar repetitivo. Render ou perspectiva leva "Imagem ilustrativa" fixo no quadro.
 
 ## Motion graphics
 

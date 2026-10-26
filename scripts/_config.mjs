@@ -1,6 +1,7 @@
 // Configuração compartilhada pelos scripts: onde ficam os dados (projetos e marcas) e qual Python usar.
 // Cada máquina pode ter um estudio.local.json (fora do Git), por exemplo:
-//   {"dados": "~/OneDrive/Documentos/Videos", "python": "~/.cache/estudio-video/whisper-venv/Scripts/python.exe"}
+//   {"dados": "~/OneDrive/Documentos/Videos", "python": "~/.cache/estudio-video/whisper-venv/Scripts/python.exe",
+//    "profundidade": "~/.cache/estudio-video/depth-anything-v2-small.onnx"}
 // Sem ele, os dados ficam em ./dados e o Python é o do sistema.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -22,6 +23,8 @@ export const DADOS = expandir(local.dados ?? 'dados');
 export const PROJETOS = path.join(DADOS, 'projetos');
 export const MARCAS = path.join(DADOS, 'marcas');
 export const PYTHON = local.python ? expandir(local.python) : process.platform === 'win32' ? 'python' : 'python3';
+// Depth Anything V2 Small em ONNX (comando profundidade). O npm run instalar baixa para cá.
+export const MODELO_PROFUNDIDADE = expandir(local.profundidade ?? '~/.cache/estudio-video/depth-anything-v2-small.onnx');
 
 // Subpastas de cada projeto de vídeo. A ordem é a do trabalho.
 export const PASTAS = {

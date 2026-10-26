@@ -5,6 +5,8 @@
 //   npm run estudio -- 001 caminho                      mostra a pasta do projeto 001
 //   npm run estudio -- 001 sondar                       inventário e pranchas do material bruto
 //   npm run estudio -- 001 proxy "1_brutos/IMG_0423.MOV"   cópia H.264 SDR com fps constante em 5_trabalho/midia/
+//   npm run estudio -- 001 profundidade "1_brutos/sala.jpg" ["1_brutos/fotos"] [--refazer]
+//                                                       mapa de profundidade em 5_trabalho/midia/profundidade/ (peça <Foto3D>)
 //   npm run estudio -- 001 transcrever "4_audio/narracao.wav" [--prompt "Café Aurora, cold brew"]
 //   npm run estudio -- 001 alinhar "5_trabalho/legenda.txt" "5_trabalho/transcricao/narracao/palavras.json" [--alias "orora=aurora"]
 //                                                       texto do roteiro com os tempos da voz (legenda.json + relatório)
@@ -21,7 +23,7 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import {createRequire} from 'node:module';
 import path from 'node:path';
-import {RAIZ, PASTAS, PYTHON, PROJETOS, acharCodigo, acharProjeto, listarProjetos} from './_config.mjs';
+import {RAIZ, PASTAS, PYTHON, PROJETOS, MODELO_PROFUNDIDADE, acharCodigo, acharProjeto, listarProjetos} from './_config.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -161,6 +163,11 @@ if (!alvo || alvo === 'ajuda') {
       const [arquivo, ...opcoes] = resto;
       if (!arquivo) throw new Error('Uso: proxy "1_brutos/<arquivo>" [--fps 30] [--altura 1920] [--sem-audio]');
       python('proxy.py', [proj.pasta, arquivo, ...opcoes]);
+      break;
+    }
+    case 'profundidade': {
+      if (resto.filter((a) => !a.startsWith('--')).length === 0) throw new Error('Uso: profundidade "1_brutos/<foto ou pasta>" [...] [--refazer]');
+      python('profundidade.py', [proj.pasta, MODELO_PROFUNDIDADE, ...resto]);
       break;
     }
     case 'transcrever': {
