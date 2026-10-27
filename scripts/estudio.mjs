@@ -247,6 +247,10 @@ if (!alvo || alvo === 'ajuda') {
       remotion(['render', 'src/index.ts', comp, master, '--crf=12', ...extra], montarPublico(proj));
       copiarCodigo(proj.numero, em('trabalho', 'codigo', rev));
       python('finalizar.py', [master, final]);
+      // Lembrete para o agente que rodou o render (Claude Code ou Codex): a revisão vem antes da entrega.
+      console.log(`\nAntes de entregar o ${rev}: faça uma revisão independente do vídeo, da capa e da legenda ` +
+        '(Claude Code: agente revisor-video; Codex: uma conversa nova, sem o contexto desta). Confira os dados do ' +
+        'kit da marca (contatos, registros profissionais), o aviso "Imagem ilustrativa", as hashtags e os dados citados.');
       break;
     }
     case 'finalizar': {
